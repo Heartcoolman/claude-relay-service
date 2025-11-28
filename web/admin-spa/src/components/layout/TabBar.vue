@@ -22,7 +22,7 @@
           'tab-btn flex flex-1 items-center justify-center px-3 py-2 text-xs font-semibold transition-all duration-300 sm:px-4 sm:py-3 sm:text-sm md:px-6',
           activeTab === tab.key
             ? 'active'
-            : 'text-gray-700 hover:bg-white/10 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700/30 dark:hover:text-gray-100'
+            : 'bg-blue-50/70 text-gray-600 shadow-sm hover:bg-blue-100/80 hover:text-gray-900 hover:shadow dark:bg-gray-700/40 dark:text-gray-300 dark:shadow-gray-900/20 dark:hover:bg-gray-700/60 dark:hover:text-gray-100'
         ]"
         @click="$emit('tab-change', tab.key)"
       >

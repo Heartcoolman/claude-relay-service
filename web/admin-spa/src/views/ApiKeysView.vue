@@ -286,17 +286,17 @@
                       <i v-else class="fas fa-sort ml-1 text-gray-400" />
                     </th>
                     <th
-                      class="w-[15%] min-w-[120px] px-3 py-4 text-left text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300"
+                      class="w-[15%] min-w-[120px] px-3 py-4 text-center text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300"
                     >
                       所属账号
                     </th>
                     <th
-                      class="w-[10%] min-w-[80px] px-3 py-4 text-left text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300"
+                      class="w-[10%] min-w-[80px] px-3 py-4 text-center text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300"
                     >
                       标签
                     </th>
                     <th
-                      class="w-[6%] min-w-[60px] cursor-pointer px-3 py-4 text-left text-xs font-bold uppercase tracking-wider text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600"
+                      class="w-[6%] min-w-[60px] cursor-pointer px-3 py-4 text-center text-xs font-bold uppercase tracking-wider text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600"
                       @click="sortApiKeys('status')"
                     >
                       状态
@@ -316,7 +316,7 @@
                       费用
                     </th>
                     <th
-                      class="w-[14%] min-w-[120px] px-3 py-4 text-left text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300"
+                      class="w-[14%] min-w-[120px] px-3 py-4 text-center text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300"
                     >
                       限制
                     </th>
@@ -331,7 +331,7 @@
                       请求数
                     </th>
                     <th
-                      class="w-[8%] min-w-[70px] cursor-pointer px-3 py-4 text-left text-xs font-bold uppercase tracking-wider text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600"
+                      class="w-[8%] min-w-[70px] cursor-pointer px-3 py-4 text-center text-xs font-bold uppercase tracking-wider text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600"
                       @click="sortApiKeys('lastUsedAt')"
                     >
                       最后使用
@@ -346,7 +346,7 @@
                       <i v-else class="fas fa-sort ml-1 text-gray-400" />
                     </th>
                     <th
-                      class="w-[8%] min-w-[70px] cursor-pointer px-3 py-4 text-left text-xs font-bold uppercase tracking-wider text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600"
+                      class="w-[8%] min-w-[70px] cursor-pointer px-3 py-4 text-center text-xs font-bold uppercase tracking-wider text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600"
                       @click="sortApiKeys('createdAt')"
                     >
                       创建时间
@@ -361,7 +361,7 @@
                       <i v-else class="fas fa-sort ml-1 text-gray-400" />
                     </th>
                     <th
-                      class="w-[8%] min-w-[70px] cursor-pointer px-3 py-4 text-left text-xs font-bold uppercase tracking-wider text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600"
+                      class="w-[8%] min-w-[70px] cursor-pointer px-3 py-4 text-center text-xs font-bold uppercase tracking-wider text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600"
                       @click="sortApiKeys('expiresAt')"
                     >
                       过期时间
@@ -426,8 +426,8 @@
                         </div>
                       </td>
                       <!-- 所属账号列 -->
-                      <td class="px-3 py-3">
-                        <div class="space-y-1">
+                      <td class="px-3 py-3 text-center">
+                        <div class="inline-block space-y-1 text-left">
                           <!-- 账号数据加载中 -->
                           <div
                             v-if="accountsLoading && hasAnyBinding(key)"
@@ -523,8 +523,8 @@
                         </div>
                       </td>
                       <!-- 标签列 -->
-                      <td class="px-3 py-3">
-                        <div class="flex flex-wrap gap-1">
+                      <td class="px-3 py-3 text-center">
+                        <div class="inline-flex flex-wrap justify-center gap-1">
                           <span
                             v-for="tag in key.tags || []"
                             :key="tag"
@@ -539,7 +539,7 @@
                           >
                         </div>
                       </td>
-                      <td class="whitespace-nowrap px-3 py-3">
+                      <td class="whitespace-nowrap px-3 py-3 text-center">
                         <span
                           :class="[
                             'inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold',
@@ -582,8 +582,8 @@
                         </template>
                       </td>
                       <!-- 限制 -->
-                      <td class="px-2 py-2" style="font-size: 12px">
-                        <div class="flex flex-col gap-2">
+                      <td class="px-2 py-2 text-center" style="font-size: 12px">
+                        <div class="flex flex-col items-center gap-2">
                           <!-- 加载中状态 - 骨架屏（仅在有费用限制配置时显示） -->
                           <template
                             v-if="
@@ -733,10 +733,10 @@
                       </td>
                       <!-- 最后使用 -->
                       <td
-                        class="whitespace-nowrap px-3 py-3 text-gray-700 dark:text-gray-300"
+                        class="whitespace-nowrap px-3 py-3 text-center text-gray-700 dark:text-gray-300"
                         style="font-size: 13px"
                       >
-                        <div class="flex flex-col leading-tight">
+                        <div class="inline-flex flex-col text-left leading-tight">
                           <span
                             v-if="key.lastUsedAt"
                             class="cursor-help"
@@ -774,13 +774,13 @@
                       </td>
                       <!-- 创建时间 -->
                       <td
-                        class="whitespace-nowrap px-3 py-3 text-gray-700 dark:text-gray-300"
+                        class="whitespace-nowrap px-3 py-3 text-center text-gray-700 dark:text-gray-300"
                         style="font-size: 13px"
                       >
                         {{ new Date(key.createdAt).toLocaleDateString() }}
                       </td>
                       <td
-                        class="whitespace-nowrap px-3 py-3 text-sm text-gray-700 dark:text-gray-300"
+                        class="whitespace-nowrap px-3 py-3 text-center text-sm text-gray-700 dark:text-gray-300"
                       >
                         <div class="inline-flex items-center gap-1.5">
                           <!-- 未激活状态 -->
@@ -1912,10 +1912,10 @@
                       </td>
                       <!-- 最后使用 -->
                       <td
-                        class="whitespace-nowrap px-3 py-3 text-gray-700 dark:text-gray-300"
+                        class="whitespace-nowrap px-3 py-3 text-center text-gray-700 dark:text-gray-300"
                         style="font-size: 13px"
                       >
-                        <div class="flex flex-col leading-tight">
+                        <div class="inline-flex flex-col text-left leading-tight">
                           <span
                             v-if="key.lastUsedAt"
                             class="cursor-help"

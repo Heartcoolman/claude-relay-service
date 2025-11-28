@@ -423,19 +423,19 @@
                       </div>
                       <span
                         v-if="account.accountType === 'dedicated'"
-                        class="inline-flex items-center rounded-full bg-purple-100 px-2 py-0.5 text-xs font-medium text-purple-800"
+                        class="inline-flex items-center rounded-full bg-purple-100 px-2.5 py-1 text-xs font-medium text-purple-800 dark:bg-purple-900/30 dark:text-purple-300"
                       >
                         <i class="fas fa-lock mr-1" />专属
                       </span>
                       <span
                         v-else-if="account.accountType === 'group'"
-                        class="inline-flex items-center rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-800"
+                        class="inline-flex items-center rounded-full bg-blue-100 px-2.5 py-1 text-xs font-medium text-blue-800 dark:bg-blue-900/30 dark:text-blue-300"
                       >
                         <i class="fas fa-layer-group mr-1" />分组调度
                       </span>
                       <span
                         v-else
-                        class="inline-flex items-center rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-800"
+                        class="inline-flex items-center rounded-full bg-green-100 px-2.5 py-1 text-xs font-medium text-green-800 dark:bg-green-900/30 dark:text-green-300"
                       >
                         <i class="fas fa-share-alt mr-1" />共享
                       </span>
@@ -448,7 +448,7 @@
                       <span
                         v-for="group in account.groupInfos"
                         :key="group.id"
-                        class="inline-flex items-center rounded-full bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-600 dark:bg-gray-700 dark:text-gray-400"
+                        class="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-1 text-xs font-medium text-gray-600 dark:bg-gray-700 dark:text-gray-400"
                         :title="`所属分组: ${group.name}`"
                       >
                         <i class="fas fa-folder mr-1" />{{ group.name }}
@@ -463,8 +463,8 @@
                   </div>
                 </div>
               </td>
-              <td class="px-3 py-4">
-                <div class="flex items-center gap-1">
+              <td class="px-3 py-4 text-center">
+                <div class="inline-flex items-center gap-1">
                   <!-- 平台图标和名称 -->
                   <div
                     v-if="account.platform === 'gemini'"
@@ -598,8 +598,8 @@
                   </div>
                 </div>
               </td>
-              <td class="whitespace-nowrap px-3 py-4">
-                <div class="flex flex-col gap-1">
+              <td class="whitespace-nowrap px-3 py-4 text-center">
+                <div class="flex flex-col items-center gap-1">
                   <!-- 已设置过期时间 -->
                   <span v-if="account.expiresAt">
                     <span
@@ -641,8 +641,8 @@
                   </span>
                 </div>
               </td>
-              <td class="whitespace-nowrap px-3 py-4">
-                <div class="flex flex-col gap-1">
+              <td class="whitespace-nowrap px-3 py-4 text-center">
+                <div class="flex flex-col items-center gap-1">
                   <span
                     :class="[
                       'inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold',
@@ -731,7 +731,7 @@
                   </span>
                 </div>
               </td>
-              <td class="whitespace-nowrap px-3 py-4">
+              <td class="whitespace-nowrap px-3 py-4 text-center">
                 <div
                   v-if="
                     account.platform === 'claude' ||
@@ -745,7 +745,7 @@
                     account.platform === 'droid' ||
                     account.platform === 'gemini-api'
                   "
-                  class="flex items-center gap-2"
+                  class="flex items-center justify-center gap-2"
                 >
                   <div class="h-2 w-16 rounded-full bg-gray-200">
                     <div
@@ -761,18 +761,21 @@
                   <span class="text-xs">N/A</span>
                 </div>
               </td>
-              <td class="px-3 py-4 text-sm text-gray-600">
+              <td class="px-3 py-4 text-center text-sm text-gray-600">
                 <div
                   v-if="formatProxyDisplay(account.proxy)"
-                  class="break-all rounded bg-blue-50 px-2 py-1 font-mono text-xs"
+                  class="inline-block break-all rounded bg-blue-50 px-2 py-1 font-mono text-xs"
                   :title="formatProxyDisplay(account.proxy)"
                 >
                   {{ formatProxyDisplay(account.proxy) }}
                 </div>
                 <div v-else class="text-gray-400">无代理</div>
               </td>
-              <td class="whitespace-nowrap px-3 py-4 text-sm">
-                <div v-if="account.usage && account.usage.daily" class="space-y-1">
+              <td class="whitespace-nowrap px-3 py-4 text-center text-sm">
+                <div
+                  v-if="account.usage && account.usage.daily"
+                  class="inline-block space-y-1 text-left"
+                >
                   <div class="flex items-center gap-2">
                     <div class="h-2 w-2 rounded-full bg-blue-500" />
                     <span class="text-sm font-medium text-gray-900 dark:text-gray-100"
@@ -800,7 +803,7 @@
                 </div>
                 <div v-else class="text-xs text-gray-400">暂无数据</div>
               </td>
-              <td class="whitespace-nowrap px-3 py-4">
+              <td class="whitespace-nowrap px-3 py-4 text-center">
                 <div v-if="account.platform === 'claude'" class="space-y-2">
                   <!-- OAuth 账户：显示三窗口 OAuth usage -->
                   <div v-if="isClaudeOAuth(account) && account.claudeUsage" class="space-y-2">
@@ -1133,11 +1136,13 @@
                   <span class="text-xs">N/A</span>
                 </div>
               </td>
-              <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-600 dark:text-gray-300">
+              <td
+                class="whitespace-nowrap px-3 py-4 text-center text-sm text-gray-600 dark:text-gray-300"
+              >
                 {{ formatLastUsed(account.lastUsedAt) }}
               </td>
-              <td class="whitespace-nowrap px-3 py-4 text-sm font-medium">
-                <div class="flex flex-wrap items-center gap-1">
+              <td class="whitespace-nowrap px-3 py-4 text-center text-sm font-medium">
+                <div class="flex flex-wrap items-center justify-center gap-1">
                   <button
                     v-if="
                       (account.platform === 'claude' ||
