@@ -698,7 +698,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, watch, nextTick, computed } from 'vue'
+import { ref, onMounted, onUnmounted, watch, nextTick } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useDashboardStore } from '@/stores/dashboard'
 import { useThemeStore } from '@/stores/theme'
@@ -715,7 +715,15 @@ import VChart from 'vue-echarts'
 import { useChartConfig } from '@/composables/useChartConfig'
 
 // 注册 ECharts 组件
-use([CanvasRenderer, PieChart, LineChart, TitleComponent, TooltipComponent, LegendComponent, GridComponent])
+use([
+  CanvasRenderer,
+  PieChart,
+  LineChart,
+  TitleComponent,
+  TooltipComponent,
+  LegendComponent,
+  GridComponent
+])
 
 import {
   PhKey,
@@ -819,19 +827,6 @@ function formatNumber(num) {
   return num.toString()
 }
 
-function formatCostValue(cost) {
-  if (!Number.isFinite(cost)) {
-    return '$0.000000'
-  }
-  if (cost >= 1) {
-    return `$${cost.toFixed(2)}`
-  }
-  if (cost >= 0.01) {
-    return `$${cost.toFixed(3)}`
-  }
-  return `$${cost.toFixed(6)}`
-}
-
 // 计算百分比
 function calculatePercentage(value, stats) {
   if (!stats || stats.length === 0) return 0
@@ -884,12 +879,44 @@ function updateUsageTrendChart() {
   })
 
   const datasets = [
-    { label: '输入Token', data: data.map((d) => d.inputTokens || 0), color: '#6366F1', showArea: true },
-    { label: '输出Token', data: data.map((d) => d.outputTokens || 0), color: '#EC4899', showArea: true },
-    { label: '缓存创建Token', data: data.map((d) => d.cacheCreateTokens || 0), color: '#3B82F6', showArea: false },
-    { label: '缓存读取Token', data: data.map((d) => d.cacheReadTokens || 0), color: '#8B5CF6', showArea: false },
-    { label: '费用 (USD)', data: data.map((d) => d.cost || 0), color: '#22C55E', yAxisIndex: 1, showArea: false },
-    { label: '请求数', data: data.map((d) => d.requests || 0), color: '#10B981', yAxisIndex: 1, showArea: false }
+    {
+      label: '输入Token',
+      data: data.map((d) => d.inputTokens || 0),
+      color: '#6366F1',
+      showArea: true
+    },
+    {
+      label: '输出Token',
+      data: data.map((d) => d.outputTokens || 0),
+      color: '#EC4899',
+      showArea: true
+    },
+    {
+      label: '缓存创建Token',
+      data: data.map((d) => d.cacheCreateTokens || 0),
+      color: '#3B82F6',
+      showArea: false
+    },
+    {
+      label: '缓存读取Token',
+      data: data.map((d) => d.cacheReadTokens || 0),
+      color: '#8B5CF6',
+      showArea: false
+    },
+    {
+      label: '费用 (USD)',
+      data: data.map((d) => d.cost || 0),
+      color: '#22C55E',
+      yAxisIndex: 1,
+      showArea: false
+    },
+    {
+      label: '请求数',
+      data: data.map((d) => d.requests || 0),
+      color: '#10B981',
+      yAxisIndex: 1,
+      showArea: false
+    }
   ]
 
   usageTrendChartOption.value = getLineOptions(labels, datasets, {

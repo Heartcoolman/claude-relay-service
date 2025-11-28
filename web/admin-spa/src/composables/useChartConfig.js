@@ -8,7 +8,16 @@ export function useChartConfig() {
   // 现代配色方案
   const colorSchemes = {
     // 主色调 - 渐变感强
-    primary: ['#6366F1', '#8B5CF6', '#EC4899', '#F59E0B', '#10B981', '#06B6D4', '#3B82F6', '#F97316'],
+    primary: [
+      '#6366F1',
+      '#8B5CF6',
+      '#EC4899',
+      '#F59E0B',
+      '#10B981',
+      '#06B6D4',
+      '#3B82F6',
+      '#F97316'
+    ],
     // 柔和色调
     soft: ['#818CF8', '#A78BFA', '#F472B6', '#FBBF24', '#34D399', '#22D3EE', '#60A5FA', '#FB923C'],
     // 深色调
