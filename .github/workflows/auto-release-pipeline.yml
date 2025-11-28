@@ -262,8 +262,15 @@ jobs:
       if: steps.check.outputs.needs_bump == 'true'
       run: |
         NEW_TAG="${{ steps.next_version.outputs.new_tag }}"
-        git tag -a "$NEW_TAG" -m "Release $NEW_TAG"
-        git push origin HEAD:main "$NEW_TAG"
+        # 检查 tag 是否已存在
+        if git rev-parse "$NEW_TAG" >/dev/null 2>&1; then
+          echo "Tag $NEW_TAG already exists locally, skipping creation"
+        elif git ls-remote --tags origin | grep -q "refs/tags/$NEW_TAG"; then
+          echo "Tag $NEW_TAG already exists on remote, skipping creation"
+        else
+          git tag -a "$NEW_TAG" -m "Release $NEW_TAG"
+          git push origin HEAD:main "$NEW_TAG"
+        fi
 
     - name: Prepare image names
       id: image_names
