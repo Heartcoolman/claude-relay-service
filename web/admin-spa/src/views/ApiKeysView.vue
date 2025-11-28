@@ -255,9 +255,7 @@
           <div v-else class="table-wrapper hidden md:block">
             <div class="table-container">
               <table class="w-full table-fixed">
-                <thead
-                  class="sticky top-0 z-10 bg-gradient-to-b from-gray-50 to-gray-100/90 backdrop-blur-sm dark:from-gray-700 dark:to-gray-800/90"
-                >
+                <thead class="sticky top-0 z-10 bg-gray-50 dark:bg-gray-700">
                   <tr>
                     <th v-if="shouldShowCheckboxes" class="w-[50px] px-3 py-4 text-left">
                       <div class="flex items-center">
@@ -1710,7 +1708,7 @@
             <div class="table-wrapper">
               <div class="table-container">
                 <table class="w-full table-fixed">
-                  <thead class="bg-gray-50/80 backdrop-blur-sm dark:bg-gray-700/80">
+                  <thead class="bg-gray-50 dark:bg-gray-700">
                     <tr>
                       <th
                         class="w-[14%] min-w-[120px] px-3 py-4 text-left text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300"

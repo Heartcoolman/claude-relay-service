@@ -163,7 +163,7 @@
       <!-- 桌面端表格视图 -->
       <div v-else class="table-container hidden md:block">
         <table class="w-full table-fixed">
-          <thead class="bg-gray-50/80 backdrop-blur-sm dark:bg-gray-700/80">
+          <thead class="bg-gray-50 dark:bg-gray-700">
             <tr>
               <th v-if="shouldShowCheckboxes" class="w-[50px] px-3 py-4 text-center">
                 <div class="flex items-center">

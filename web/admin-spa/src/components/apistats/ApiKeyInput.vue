@@ -168,18 +168,14 @@ const hasValidInput = computed(() => {
 </script>
 
 <style scoped>
-/* 卡片样式 - 遵循设计规范 */
+/* 卡片样式 - 遵循设计规范（移除 backdrop-filter 提升滚动性能） */
 .api-input-wide-card {
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.95);
   border: 1px solid #e2e8f0;
-  transition:
-    background-color 0.15s ease-in-out,
-    border-color 0.15s ease-in-out;
 }
 
 :global(.dark) .api-input-wide-card {
-  background: rgba(31, 41, 55, 0.8);
+  background: rgba(31, 41, 55, 0.95);
   border-color: rgba(71, 85, 105, 0.5);
 }
 

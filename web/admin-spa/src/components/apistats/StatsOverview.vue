@@ -526,7 +526,7 @@ const getCodexWindowLabel = (type) => (type === 'secondary' ? '周限' : '5h')
 }
 
 :global(.dark) .card-section {
-  backdrop-filter: blur(10px);
+  /* backdrop-filter removed for scroll performance */
 }
 
 .section-header {

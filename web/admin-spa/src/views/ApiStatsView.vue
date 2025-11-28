@@ -75,7 +75,7 @@
       <!-- 错误提示 -->
       <div v-if="error" class="mb-6 md:mb-8">
         <div
-          class="rounded-xl border border-red-500/30 bg-red-500/20 p-3 text-sm text-red-800 backdrop-blur-sm dark:border-red-500/20 dark:bg-red-500/10 dark:text-red-200 md:p-4 md:text-base"
+          class="rounded-xl border border-red-500/30 bg-red-50 p-3 text-sm text-red-800 dark:border-red-500/20 dark:bg-red-900/20 dark:text-red-200 md:p-4 md:text-base"
         >
           <PhWarningCircle class="mr-2" :size="16" />
           {{ error }}
@@ -275,23 +275,19 @@ watch(apiKey, (newValue) => {
   position: relative;
 }
 
-/* 卡片样式 - 遵循设计规范 */
+/* 卡片样式 - 遵循设计规范（移除 backdrop-filter 提升滚动性能） */
 .glass-strong {
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.95);
   border: 1px solid #e2e8f0;
   border-radius: 16px;
   box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
   position: relative;
   z-index: 1;
-  transition:
-    background-color 0.15s ease-in-out,
-    border-color 0.15s ease-in-out;
 }
 
 /* 暗色模式卡片样式 */
 :global(.dark) .glass-strong {
-  background: rgba(31, 41, 55, 0.8);
+  background: rgba(31, 41, 55, 0.95);
   border-color: rgba(71, 85, 105, 0.5);
   box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3);
 }
