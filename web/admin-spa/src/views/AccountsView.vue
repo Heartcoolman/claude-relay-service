@@ -165,7 +165,7 @@
         <table class="w-full table-fixed">
           <thead class="bg-gray-50/80 backdrop-blur-sm dark:bg-gray-700/80">
             <tr>
-              <th v-if="shouldShowCheckboxes" class="w-[50px] px-3 py-4 text-left">
+              <th v-if="shouldShowCheckboxes" class="w-[50px] px-3 py-4 text-center">
                 <div class="flex items-center">
                   <input
                     v-model="selectAllChecked"
@@ -177,7 +177,7 @@
                 </div>
               </th>
               <th
-                class="w-[22%] min-w-[180px] cursor-pointer px-3 py-4 text-left text-xs font-bold uppercase tracking-wider text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600"
+                class="w-[22%] min-w-[180px] cursor-pointer px-3 py-4 text-center text-xs font-bold uppercase tracking-wider text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600"
                 @click="sortAccounts('name')"
               >
                 名称
@@ -192,7 +192,7 @@
                 <i v-else class="fas fa-sort ml-1 text-gray-400" />
               </th>
               <th
-                class="w-[15%] min-w-[120px] cursor-pointer px-3 py-4 text-left text-xs font-bold uppercase tracking-wider text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600"
+                class="w-[15%] min-w-[120px] cursor-pointer px-3 py-4 text-center text-xs font-bold uppercase tracking-wider text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600"
                 @click="sortAccounts('platform')"
               >
                 平台/类型
@@ -207,7 +207,7 @@
                 <i v-else class="fas fa-sort ml-1 text-gray-400" />
               </th>
               <th
-                class="w-[12%] min-w-[110px] cursor-pointer px-3 py-4 text-left text-xs font-bold uppercase tracking-wider text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600"
+                class="w-[12%] min-w-[110px] cursor-pointer px-3 py-4 text-center text-xs font-bold uppercase tracking-wider text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600"
                 @click="sortAccounts('expiresAt')"
               >
                 到期时间
@@ -222,7 +222,7 @@
                 <i v-else class="fas fa-sort ml-1 text-gray-400" />
               </th>
               <th
-                class="w-[12%] min-w-[100px] cursor-pointer px-3 py-4 text-left text-xs font-bold uppercase tracking-wider text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600"
+                class="w-[12%] min-w-[100px] cursor-pointer px-3 py-4 text-center text-xs font-bold uppercase tracking-wider text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600"
                 @click="sortAccounts('status')"
               >
                 状态
@@ -237,7 +237,7 @@
                 <i v-else class="fas fa-sort ml-1 text-gray-400" />
               </th>
               <th
-                class="w-[8%] min-w-[80px] cursor-pointer px-3 py-4 text-left text-xs font-bold uppercase tracking-wider text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600"
+                class="w-[8%] min-w-[80px] cursor-pointer px-3 py-4 text-center text-xs font-bold uppercase tracking-wider text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600"
                 @click="sortAccounts('priority')"
               >
                 优先级
@@ -252,19 +252,19 @@
                 <i v-else class="fas fa-sort ml-1 text-gray-400" />
               </th>
               <th
-                class="w-[10%] min-w-[100px] px-3 py-4 text-left text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300"
+                class="w-[10%] min-w-[100px] px-3 py-4 text-center text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300"
               >
                 代理
               </th>
               <th
-                class="w-[10%] min-w-[90px] px-3 py-4 text-left text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300"
+                class="w-[10%] min-w-[90px] px-3 py-4 text-center text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300"
               >
                 今日使用
               </th>
               <th
-                class="w-[10%] min-w-[100px] px-3 py-4 text-left text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300"
+                class="w-[10%] min-w-[100px] px-3 py-4 text-center text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300"
               >
-                <div class="flex items-center gap-2">
+                <div class="flex items-center justify-center gap-2">
                   <span>会话窗口</span>
                   <el-tooltip placement="top">
                     <template #content>
@@ -382,12 +382,12 @@
                 </div>
               </th>
               <th
-                class="w-[8%] min-w-[80px] px-3 py-4 text-left text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300"
+                class="w-[8%] min-w-[80px] px-3 py-4 text-center text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300"
               >
                 最后使用
               </th>
               <th
-                class="w-[15%] min-w-[180px] px-3 py-4 text-left text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300"
+                class="w-[15%] min-w-[180px] px-3 py-4 text-center text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300"
               >
                 操作
               </th>
@@ -497,12 +497,16 @@
                   </div>
                   <div
                     v-else-if="account.platform === 'openai'"
-                    class="flex items-center gap-1.5 rounded-lg border border-gray-700 bg-gray-100 bg-gradient-to-r from-gray-100 to-gray-100 px-2.5 py-1"
+                    class="flex items-center gap-1.5 rounded-lg border border-gray-300 bg-gradient-to-r from-gray-100 to-gray-200 px-2.5 py-1 dark:border-gray-600 dark:from-gray-700 dark:to-gray-600"
                   >
-                    <div class="fa-openai" />
-                    <span class="text-xs font-semibold text-gray-950">OpenAi</span>
-                    <span class="mx-1 h-4 w-px bg-gray-400" />
-                    <span class="text-xs font-medium text-gray-950">{{ getOpenAIAuthType() }}</span>
+                    <i class="fa-openai text-xs text-gray-700 dark:text-gray-400" />
+                    <span class="text-xs font-semibold text-gray-800 dark:text-gray-200"
+                      >OpenAI</span
+                    >
+                    <span class="mx-1 h-4 w-px bg-gray-400 dark:bg-gray-500" />
+                    <span class="text-xs font-medium text-gray-700 dark:text-gray-300">{{
+                      getOpenAIAuthType()
+                    }}</span>
                   </div>
                   <div
                     v-else-if="account.platform === 'azure_openai'"

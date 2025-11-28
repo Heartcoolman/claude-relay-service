@@ -182,5 +182,9 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-/* 组件特定样式 */
+/* 统一单选按钮宽度 */
+:deep(.el-radio-group .el-radio-button__inner) {
+  min-width: 70px;
+  text-align: center;
+}
 </style>

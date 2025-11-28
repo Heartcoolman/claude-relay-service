@@ -15,9 +15,11 @@
     "axios": "^1.6.2",
     "chart.js": "^4.4.0",
     "dayjs": "^1.11.9",
+    "echarts": "^6.0.0",
     "element-plus": "^2.4.4",
     "pinia": "^2.1.7",
     "vue": "^3.3.4",
+    "vue-echarts": "^8.0.1",
     "vue-router": "^4.2.5",
     "xlsx": "^0.18.5",
     "xlsx-js-style": "^1.2.0"

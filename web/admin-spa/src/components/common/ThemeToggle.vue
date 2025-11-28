@@ -211,9 +211,9 @@ const selectTheme = (mode) => {
 
 /* 自动模式样式 */
 .theme-switch.is-auto {
-  background: linear-gradient(135deg, #c4b5fd 0%, #6366f1 50%, #4338ca 100%);
+  background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 50%, #2563eb 100%);
   border-color: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.25);
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.25);
 }
 
 .theme-switch.is-auto::before {

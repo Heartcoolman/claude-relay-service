@@ -311,7 +311,7 @@
                       <i v-else class="fas fa-sort ml-1 text-gray-400" />
                     </th>
                     <th
-                      class="w-[4%] min-w-[40px] px-3 py-4 text-right text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300"
+                      class="w-[4%] min-w-[50px] whitespace-nowrap px-3 py-4 text-right text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300"
                     >
                       费用
                     </th>
@@ -321,12 +321,12 @@
                       限制
                     </th>
                     <th
-                      class="w-[5%] min-w-[45px] px-3 py-4 text-right text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300"
+                      class="w-[5%] min-w-[60px] whitespace-nowrap px-3 py-4 text-right text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300"
                     >
                       Token
                     </th>
                     <th
-                      class="w-[5%] min-w-[45px] px-3 py-4 text-right text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300"
+                      class="w-[5%] min-w-[60px] whitespace-nowrap px-3 py-4 text-right text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300"
                     >
                       请求数
                     </th>
@@ -1744,17 +1744,17 @@
                         删除时间
                       </th>
                       <th
-                        class="w-[8%] min-w-[60px] px-3 py-4 text-right text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300"
+                        class="w-[8%] min-w-[60px] whitespace-nowrap px-3 py-4 text-right text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300"
                       >
                         费用
                       </th>
                       <th
-                        class="w-[8%] min-w-[60px] px-3 py-4 text-right text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300"
+                        class="w-[8%] min-w-[60px] whitespace-nowrap px-3 py-4 text-right text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300"
                       >
                         Token
                       </th>
                       <th
-                        class="w-[8%] min-w-[60px] px-3 py-4 text-right text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300"
+                        class="w-[8%] min-w-[60px] whitespace-nowrap px-3 py-4 text-right text-xs font-bold uppercase tracking-wider text-gray-700 dark:text-gray-300"
                       >
                         请求数
                       </th>
