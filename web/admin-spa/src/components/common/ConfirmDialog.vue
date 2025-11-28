@@ -11,7 +11,7 @@
             <div
               class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-amber-500 to-amber-600"
             >
-              <i class="fas fa-exclamation-triangle text-lg text-white" />
+              <PhWarningCircle class="text-white" :size="20" />
             </div>
             <div class="flex-1">
               <h3 class="mb-2 text-lg font-semibold text-gray-900 dark:text-white">
@@ -49,6 +49,7 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
+import { PhWarningCircle } from '@phosphor-icons/vue'
 
 // 状态
 const isVisible = ref(false)

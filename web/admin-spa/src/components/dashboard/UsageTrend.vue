@@ -2,7 +2,7 @@
   <div class="glass-strong mb-8 rounded-3xl p-6">
     <div class="mb-6 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
       <h2 class="flex items-center text-xl font-bold text-gray-800">
-        <i class="fas fa-chart-area mr-2 text-blue-500" />
+        <PhChartLine class="mr-2 text-blue-500" :size="18" />
         使用趋势
       </h2>
 
@@ -39,6 +39,7 @@ import { ref, onMounted, onUnmounted, watch } from 'vue'
 import { Chart } from 'chart.js/auto'
 import { useDashboardStore } from '@/stores/dashboard'
 import { useChartConfig } from '@/composables/useChartConfig'
+import { PhChartLine } from '@phosphor-icons/vue'
 
 const dashboardStore = useDashboardStore()
 const chartCanvas = ref(null)

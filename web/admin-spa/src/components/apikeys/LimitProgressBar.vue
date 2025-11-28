@@ -6,7 +6,7 @@
       class="flex items-center justify-center rounded-lg px-3 py-2 text-xs"
     >
       <div class="flex items-center gap-1.5 text-gray-600 dark:text-gray-300">
-        <i class="fas fa-infinity text-sm text-gray-500 dark:text-gray-400" />
+        <PhInfinity class="text-gray-500 dark:text-gray-400" :size="14" />
         <span class="font-medium">无限制</span>
       </div>
     </div>
@@ -14,7 +14,7 @@
       <!-- 使用额度和限额显示在进度条上方右对齐 -->
       <div class="flex items-center justify-between text-[11px] font-medium">
         <div class="flex items-center gap-1.5" :class="compactLabelClass">
-          <i :class="['text-[11px]', iconClass]" />
+          <component :is="iconComponent" :class="['text-[11px]', iconColorClass]" :size="12" />
           <span>{{ label }}</span>
         </div>
         <span class="text-gray-700 dark:text-gray-200"
@@ -52,7 +52,7 @@
       <!-- 文字层 - 使用双层文字技术确保可读性 -->
       <div class="relative z-10 flex h-full items-center justify-between px-3">
         <div class="flex items-center gap-1.5">
-          <i :class="['text-xs', iconClass]" />
+          <component :is="iconComponent" :class="['text-xs', iconColorClass]" :size="14" />
           <span class="text-xs font-semibold" :class="labelTextClass">{{ label }}</span>
         </div>
         <div class="flex items-center gap-1.5">
@@ -78,6 +78,7 @@
 
 <script setup>
 import { computed } from 'vue'
+import { PhCalendarBlank, PhClock, PhDiamond, PhInfinity, PhWallet } from '@phosphor-icons/vue'
 
 const props = defineProps({
   type: {
@@ -246,51 +247,41 @@ const compactLabelClass = computed(() => {
   }
 })
 
-// 图标类
-const iconClass = computed(() => {
-  const p = progress.value
-
-  // 根据进度选择图标颜色
-  let colorClass = ''
-  if (p >= 90) {
-    colorClass = 'text-red-700 dark:text-red-400'
-  } else if (p >= 70) {
-    colorClass = 'text-orange-700 dark:text-orange-400'
-  } else {
-    switch (props.type) {
-      case 'daily':
-        colorClass = 'text-green-700 dark:text-green-400'
-        break
-      case 'opus':
-        colorClass = 'text-purple-700 dark:text-purple-400'
-        break
-      case 'window':
-        colorClass = 'text-blue-700 dark:text-blue-400'
-        break
-      default:
-        colorClass = 'text-gray-600 dark:text-gray-400'
-    }
-  }
-
-  let iconName = ''
+const iconComponent = computed(() => {
   switch (props.type) {
     case 'daily':
-      iconName = 'fas fa-calendar-day'
-      break
+      return PhCalendarBlank
     case 'opus':
-      iconName = 'fas fa-gem'
-      break
+      return PhDiamond
     case 'window':
-      iconName = 'fas fa-clock'
-      break
+      return PhClock
     case 'total':
-      iconName = 'fas fa-wallet'
-      break
+      return PhWallet
     default:
-      iconName = 'fas fa-infinity'
+      return PhInfinity
+  }
+})
+
+const iconColorClass = computed(() => {
+  const p = progress.value
+
+  if (p >= 90) {
+    return 'text-red-700 dark:text-red-400'
+  }
+  if (p >= 70) {
+    return 'text-orange-700 dark:text-orange-400'
   }
 
-  return `${iconName} ${colorClass}`
+  switch (props.type) {
+    case 'daily':
+      return 'text-green-700 dark:text-green-400'
+    case 'opus':
+      return 'text-purple-700 dark:text-purple-400'
+    case 'window':
+      return 'text-blue-700 dark:text-blue-400'
+    default:
+      return 'text-gray-600 dark:text-gray-400'
+  }
 })
 
 // 标签文字颜色 - 始终保持高对比度

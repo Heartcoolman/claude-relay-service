@@ -15,7 +15,7 @@
             <div
               class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-amber-500 to-orange-600"
             >
-              <i class="fas fa-clock text-white" />
+              <PhClock class="text-white" :size="20" />
             </div>
             <div>
               <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100">修改到期时间</h3>
@@ -28,7 +28,7 @@
             class="text-gray-400 transition-colors hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300"
             @click="$emit('close')"
           >
-            <i class="fas fa-times text-xl" />
+            <PhX class="text-xl" :size="20" />
           </button>
         </div>
 
@@ -54,7 +54,7 @@
                   </template>
                   <!-- 永不过期 -->
                   <template v-else>
-                    <i class="fas fa-infinity mr-1 text-gray-500" />
+                    <PhInfinity class="mr-1 text-gray-500" :size="16" />
                     永不过期
                   </template>
                 </p>
@@ -62,13 +62,14 @@
               <div
                 class="flex h-12 w-12 items-center justify-center rounded-lg bg-white shadow-sm dark:bg-gray-700"
               >
-                <i
+                <PhHourglass
                   :class="[
-                    'fas fa-hourglass-half text-lg',
+                    'text-lg',
                     account.expiresAt && isExpired(account.expiresAt)
                       ? 'text-red-500'
                       : 'text-gray-400'
                   ]"
+                  :size="20"
                 />
               </div>
             </div>
@@ -102,7 +103,7 @@
                 ]"
                 @click="selectQuickOption('custom')"
               >
-                <i class="fas fa-calendar-alt mr-1" />
+                <PhCalendarBlank class="mr-1" :size="16" />
                 自定义
               </button>
             </div>
@@ -133,7 +134,7 @@
             <div class="flex items-center justify-between">
               <div>
                 <p class="mb-1 text-xs font-medium text-blue-700 dark:text-blue-400">
-                  <i class="fas fa-arrow-right mr-1" />
+                  <PhArrowRight class="mr-1" :size="16" />
                   新的到期时间
                 </p>
                 <p class="text-sm font-semibold text-blue-900 dark:text-blue-200">
@@ -148,7 +149,7 @@
                     </span>
                   </template>
                   <template v-else>
-                    <i class="fas fa-infinity mr-1" />
+                    <PhInfinity class="mr-1" :size="16" />
                     永不过期
                   </template>
                 </p>
@@ -156,7 +157,7 @@
               <div
                 class="flex h-12 w-12 items-center justify-center rounded-lg bg-white shadow-sm dark:bg-gray-700"
               >
-                <i class="fas fa-check text-lg text-green-500" />
+                <PhCheck class="text-lg text-green-500" :size="20" />
               </div>
             </div>
           </div>
@@ -175,7 +176,7 @@
               @click="handleSave"
             >
               <div v-if="saving" class="loading-spinner mr-2" />
-              <i v-else class="fas fa-save mr-2" />
+              <PhFloppyDisk v-else class="mr-2" :size="16" />
               {{ saving ? '保存中...' : '保存更改' }}
             </button>
           </div>
@@ -186,6 +187,16 @@
 </template>
 
 <script setup>
+import {
+  PhArrowRight,
+  PhCalendarBlank,
+  PhCheck,
+  PhClock,
+  PhFloppyDisk,
+  PhHourglass,
+  PhInfinity,
+  PhX
+} from '@phosphor-icons/vue'
 import { ref, reactive, computed, watch } from 'vue'
 
 const props = defineProps({

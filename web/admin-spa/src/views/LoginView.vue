@@ -21,7 +21,7 @@
               :src="authStore.oemSettings.siteIconData || authStore.oemSettings.siteIcon"
               @error="(e) => (e.target.style.display = 'none')"
             />
-            <i v-else class="fas fa-cloud text-2xl text-gray-700 sm:text-3xl" />
+            <PhCloud v-else class="text-gray-700 sm:h-8 sm:w-8" :size="24" />
           </template>
           <div v-else class="h-10 w-10 animate-pulse rounded bg-gray-300/50 sm:h-12 sm:w-12" />
         </div>
@@ -79,7 +79,7 @@
           :disabled="authStore.loginLoading"
           type="submit"
         >
-          <i v-if="!authStore.loginLoading" class="fas fa-sign-in-alt mr-2" />
+          <PhSignIn v-if="!authStore.loginLoading" class="mr-2" :size="16" />
           <div v-if="authStore.loginLoading" class="loading-spinner mr-2" />
           {{ authStore.loginLoading ? '登录中...' : '登录' }}
         </button>
@@ -89,7 +89,7 @@
         v-if="authStore.loginError"
         class="mt-4 rounded-lg border border-red-500/30 bg-red-500/20 p-3 text-center text-xs text-red-800 backdrop-blur-sm dark:text-red-400 sm:mt-6 sm:rounded-xl sm:p-4 sm:text-sm"
       >
-        <i class="fas fa-exclamation-triangle mr-2" />{{ authStore.loginError }}
+        <PhWarningCircle class="mr-2" :size="16" />{{ authStore.loginError }}
       </div>
     </div>
   </div>
@@ -97,6 +97,7 @@
 
 <script setup>
 import { ref, onMounted, computed } from 'vue'
+import { PhCloud, PhSignIn, PhWarningCircle } from '@phosphor-icons/vue'
 import { useAuthStore } from '@/stores/auth'
 import { useThemeStore } from '@/stores/theme'
 import ThemeToggle from '@/components/common/ThemeToggle.vue'

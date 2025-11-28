@@ -7,18 +7,19 @@
       :class="[isOpen && 'border-blue-400 shadow-md']"
       @click="toggleDropdown"
     >
-      <i v-if="icon" :class="['fas', icon, 'text-sm', iconColor]"></i>
+      <component :is="icon" v-if="icon" :class="['text-sm', iconColor]" :size="16" />
       <span
         class="select-none whitespace-nowrap text-sm font-medium text-gray-700 dark:text-gray-200"
       >
         {{ selectedLabel || placeholder }}
       </span>
-      <i
+      <PhCaretDown
         :class="[
-          'fas fa-chevron-down ml-auto text-xs text-gray-400 transition-transform duration-200 dark:text-gray-500',
+          'ml-auto text-gray-400 transition-transform duration-200 dark:text-gray-500',
           isOpen && 'rotate-180'
         ]"
-      ></i>
+        :size="12"
+      />
     </div>
 
     <!-- 下拉选项 - 使用 Teleport 将其移动到 body -->
@@ -49,12 +50,13 @@
               ]"
               @click="selectOption(option)"
             >
-              <i v-if="option.icon" :class="['fas', option.icon, 'text-xs']"></i>
+              <component :is="option.icon" v-if="option.icon" :size="16" />
               <span>{{ option.label }}</span>
-              <i
+              <PhCheck
                 v-if="option.value === modelValue"
-                class="fas fa-check ml-auto pl-3 text-xs text-blue-600"
-              ></i>
+                class="ml-auto pl-3 text-blue-600"
+                :size="14"
+              />
             </div>
           </div>
         </div>
@@ -65,6 +67,7 @@
 
 <script setup>
 import { ref, computed, onMounted, onBeforeUnmount, nextTick } from 'vue'
+import { PhCaretDown, PhCheck } from '@phosphor-icons/vue'
 
 const props = defineProps({
   modelValue: {
@@ -80,8 +83,8 @@ const props = defineProps({
     default: '请选择'
   },
   icon: {
-    type: String,
-    default: ''
+    type: [Object, Function],
+    default: null
   },
   iconColor: {
     type: String,

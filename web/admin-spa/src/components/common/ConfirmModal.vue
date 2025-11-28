@@ -8,7 +8,7 @@
           <div
             class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-yellow-400 to-yellow-500"
           >
-            <i class="fas fa-exclamation text-xl text-white" />
+            <PhWarning class="text-white" :size="20" />
           </div>
           <div class="flex-1">
             <h3 class="mb-2 text-lg font-bold text-gray-900 dark:text-white">
@@ -40,6 +40,8 @@
 </template>
 
 <script setup>
+import { PhWarning } from '@phosphor-icons/vue'
+
 defineProps({
   show: {
     type: Boolean,

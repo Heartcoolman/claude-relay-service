@@ -6,13 +6,11 @@
       <!-- 基础信息 / 批量概要 -->
       <div class="card-section">
         <header class="section-header">
-          <i
+          <component
+            :is="multiKeyMode ? PhStack : PhInfo"
             class="header-icon"
-            :class="
-              multiKeyMode
-                ? 'fas fa-layer-group text-purple-500'
-                : 'fas fa-info-circle text-blue-500'
-            "
+            :class="multiKeyMode ? 'text-purple-500' : 'text-blue-500'"
+            :size="16"
           />
           <h3 class="header-title">{{ multiKeyMode ? '批量查询概要' : 'API Key 信息' }}</h3>
         </header>
@@ -25,13 +23,13 @@
           <div class="info-item">
             <p class="info-label">有效 Keys 数</p>
             <p class="info-value text-green-600 dark:text-emerald-400">
-              <i class="fas fa-check-circle mr-1" />{{ aggregatedStats.activeKeys }} 个
+              <PhCheckCircle class="mr-1" :size="14" />{{ aggregatedStats.activeKeys }} 个
             </p>
           </div>
           <div v-if="invalidKeys.length > 0" class="info-item">
             <p class="info-label">无效 Keys 数</p>
             <p class="info-value text-red-500 dark:text-red-400">
-              <i class="fas fa-times-circle mr-1" />{{ invalidKeys.length }} 个
+              <PhXCircle class="mr-1" :size="14" />{{ invalidKeys.length }} 个
             </p>
           </div>
           <div class="info-item">
@@ -74,10 +72,8 @@
                   : 'text-red-500 dark:text-red-400'
               "
             >
-              <i
-                class="mr-1"
-                :class="statsData.isActive ? 'fas fa-check-circle' : 'fas fa-times-circle'"
-              />
+              <PhCheckCircle v-if="statsData.isActive" class="mr-1" :size="14" />
+              <PhXCircle v-else class="mr-1" :size="14" />
               {{ statsData.isActive ? '活跃' : '已停用' }}
             </p>
           </div>
@@ -94,7 +90,7 @@
             <div class="info-value">
               <template v-if="statsData.expirationMode === 'activation' && !statsData.isActivated">
                 <span class="text-amber-600 dark:text-amber-400">
-                  <i class="fas fa-pause-circle mr-1" />未激活
+                  <PhPauseCircle class="mr-1" :size="14" />未激活
                 </span>
                 <span class="ml-2 text-xs text-gray-500 dark:text-gray-400">
                   首次使用后
@@ -107,19 +103,19 @@
                   v-if="isApiKeyExpired(statsData.expiresAt)"
                   class="text-red-500 dark:text-red-400"
                 >
-                  <i class="fas fa-exclamation-circle mr-1" />已过期
+                  <PhWarning class="mr-1" :size="14" />已过期
                 </span>
                 <span
                   v-else-if="isApiKeyExpiringSoon(statsData.expiresAt)"
                   class="text-orange-500 dark:text-orange-400"
                 >
-                  <i class="fas fa-clock mr-1" />{{ formatExpireDate(statsData.expiresAt) }}
+                  <PhClock class="mr-1" :size="14" />{{ formatExpireDate(statsData.expiresAt) }}
                 </span>
                 <span v-else>{{ formatExpireDate(statsData.expiresAt) }}</span>
               </template>
               <template v-else>
                 <span class="text-gray-400 dark:text-gray-500">
-                  <i class="fas fa-infinity mr-1" />永不过期
+                  <PhInfinity class="mr-1" :size="14" />永不过期
                 </span>
               </template>
             </div>
@@ -130,7 +126,7 @@
       <!-- 使用统计概览 -->
       <div class="card-section">
         <header class="section-header">
-          <i class="header-icon fas fa-chart-bar text-green-500" />
+          <PhChartBar class="header-icon text-green-500" :size="16" />
           <h3 class="header-title">使用统计概览</h3>
           <span class="header-tag">{{ statsPeriod === 'daily' ? '今日' : '本月' }}</span>
         </header>
@@ -166,7 +162,7 @@
     <!-- 专属账号运行状态，仅在单 key 且存在绑定时显示 -->
     <div v-if="!multiKeyMode && boundAccountList.length > 0" class="card-section">
       <header class="section-header">
-        <i class="header-icon fas fa-plug text-indigo-500" />
+        <PhPlug class="header-icon text-indigo-500" :size="16" />
         <h3 class="header-title">专属账号运行状态</h3>
         <span class="header-tag">实时更新</span>
       </header>
@@ -183,7 +179,8 @@
                 class="account-icon"
                 :class="account.platform === 'claude' ? 'icon-claude' : 'icon-openai'"
               >
-                <i :class="account.platform === 'claude' ? 'fas fa-meteor' : 'fas fa-robot'" />
+                <PhBrain v-if="account.platform === 'claude'" :size="16" />
+                <PhRobot v-else :size="16" />
               </span>
               <div>
                 <p class="account-name">{{ getAccountLabel(account) }}</p>
@@ -196,7 +193,7 @@
               v-if="getRateLimitDisplay(account.rateLimitStatus)"
               :class="['rate-badge', getRateLimitDisplay(account.rateLimitStatus).class]"
             >
-              <i class="fas fa-tachometer-alt mr-1" />
+              <PhGauge class="mr-1" :size="14" />
               {{ getRateLimitDisplay(account.rateLimitStatus).text }}
             </div>
           </div>
@@ -281,6 +278,21 @@
 import { computed } from 'vue'
 import { storeToRefs } from 'pinia'
 import dayjs from 'dayjs'
+import {
+  PhChartBar,
+  PhCheckCircle,
+  PhClock,
+  PhBrain,
+  PhGauge,
+  PhInfo,
+  PhInfinity,
+  PhPauseCircle,
+  PhPlug,
+  PhRobot,
+  PhStack,
+  PhWarning,
+  PhXCircle
+} from '@phosphor-icons/vue'
 import { useApiStatsStore } from '@/stores/apistats'
 
 const apiStatsStore = useApiStatsStore()

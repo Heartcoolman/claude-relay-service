@@ -16,7 +16,7 @@
             <div
               class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-indigo-500 text-white shadow-lg"
             >
-              <i class="fas fa-chart-area text-lg" />
+              <PhChartLineUp class="text-lg" :size="20" />
             </div>
             <div class="space-y-1">
               <div class="flex flex-wrap items-center gap-2">
@@ -27,13 +27,13 @@
                   v-if="account?.platform"
                   class="inline-flex items-center rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-medium text-blue-700 dark:bg-blue-500/10 dark:text-blue-300"
                 >
-                  <i class="fas fa-layer-group mr-1" />{{ platformLabel }}
+                  <PhStack class="mr-1" :size="16" />{{ platformLabel }}
                 </span>
                 <span
                   v-if="account?.accountType"
                   class="inline-flex items-center rounded-full bg-purple-100 px-2.5 py-0.5 text-xs font-medium text-purple-700 dark:bg-purple-500/10 dark:text-purple-300"
                 >
-                  <i class="fas fa-user-tag mr-1" />{{ accountTypeLabel }}
+                  <PhIdentificationCard class="mr-1" :size="16" />{{ accountTypeLabel }}
                 </span>
               </div>
               <p class="text-xs text-gray-500 dark:text-gray-400 sm:text-sm">
@@ -48,7 +48,7 @@
             class="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-500 transition hover:bg-gray-200 hover:text-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200"
             @click="handleClose"
           >
-            <i class="fas fa-times" />
+            <PhX :size="20" />
           </button>
         </div>
 
@@ -82,7 +82,7 @@
                   <div
                     class="flex h-10 w-10 items-center justify-center rounded-xl bg-gray-50 dark:bg-gray-800"
                   >
-                    <i :class="['fas', metric.icon, metric.iconClass]"></i>
+                    <component :is="metric.icon" :class="metric.iconClass" :size="20" />
                   </div>
                 </div>
               </div>
@@ -96,7 +96,7 @@
                 <div
                   class="flex items-center gap-2 text-sm font-semibold text-blue-700 dark:text-blue-300"
                 >
-                  <i class="fas fa-sun" />
+                  <PhSun :size="16" />
                   今日概览
                 </div>
                 <div
@@ -129,7 +129,7 @@
                 <div
                   class="flex items-center gap-2 text-sm font-semibold text-amber-700 dark:text-amber-300"
                 >
-                  <i class="fas fa-crown" />
+                  <PhCrown :size="16" />
                   最高费用日
                 </div>
                 <div
@@ -164,7 +164,7 @@
                 <div
                   class="flex items-center gap-2 text-sm font-semibold text-emerald-700 dark:text-emerald-300"
                 >
-                  <i class="fas fa-chart-bar" />
+                  <PhChartBar :size="16" />
                   最高请求日
                 </div>
                 <div
@@ -202,7 +202,7 @@
                 <h4
                   class="mb-3 flex items-center text-sm font-semibold text-gray-700 dark:text-gray-300"
                 >
-                  <i class="fas fa-database mr-2 text-indigo-500" /> 累计 Token
+                  <PhDatabase class="mr-2 text-indigo-500" :size="16" /> 累计 Token
                 </h4>
                 <div class="space-y-2 text-sm text-gray-600 dark:text-gray-300">
                   <div class="flex items-center justify-between">
@@ -234,7 +234,7 @@
                 <h4
                   class="mb-3 flex items-center text-sm font-semibold text-gray-700 dark:text-gray-300"
                 >
-                  <i class="fas fa-tachometer-alt mr-2 text-purple-500" /> 平均速率
+                  <PhGauge class="mr-2 text-purple-500" :size="16" /> 平均速率
                 </h4>
                 <div class="space-y-2 text-sm text-gray-600 dark:text-gray-300">
                   <div class="flex items-center justify-between">
@@ -273,7 +273,7 @@
                 <h4
                   class="mb-3 flex items-center text-sm font-semibold text-gray-700 dark:text-gray-300"
                 >
-                  <i class="fas fa-layer-group mr-2 text-teal-500" /> 最近统计
+                  <PhStack class="mr-2 text-teal-500" :size="16" /> 最近统计
                 </h4>
                 <div class="space-y-2 text-sm text-gray-600 dark:text-gray-300">
                   <div class="flex items-center justify-between">
@@ -306,7 +306,7 @@
                 <h4
                   class="flex items-center text-sm font-semibold text-gray-700 dark:text-gray-300"
                 >
-                  <i class="fas fa-chart-line mr-2 text-blue-500" /> 30天费用与请求趋势
+                  <PhChartLine class="mr-2 text-blue-500" :size="16" /> 30天费用与请求趋势
                 </h4>
                 <span class="text-xs text-gray-400 dark:text-gray-500">
                   最新更新时间：{{ formatDateTime(generatedAtDisplay) }}
@@ -324,6 +324,21 @@
 </template>
 
 <script setup>
+import {
+  PhChartBar,
+  PhChartLine,
+  PhChartLineUp,
+  PhCrown,
+  PhDatabase,
+  PhGauge,
+  PhIdentificationCard,
+  PhPaperPlaneTilt,
+  PhReceipt,
+  PhStack,
+  PhSun,
+  PhWaveSquare,
+  PhX
+} from '@phosphor-icons/vue'
 import { computed, nextTick, onUnmounted, ref, watch } from 'vue'
 import { storeToRefs } from 'pinia'
 import Chart from 'chart.js/auto'
@@ -433,7 +448,7 @@ const primaryMetrics = computed(() => [
     label: '30天总费用',
     value: props.summary?.totalCostFormatted || '$0.000000',
     subtitle: '累计成本',
-    icon: 'fa-file-invoice-dollar',
+    icon: PhReceipt,
     iconClass: 'text-emerald-500'
   },
   {
@@ -441,7 +456,7 @@ const primaryMetrics = computed(() => [
     label: '30天总请求',
     value: formatNumber(props.summary?.totalRequests || 0),
     subtitle: '调用次数',
-    icon: 'fa-paper-plane',
+    icon: PhPaperPlaneTilt,
     iconClass: 'text-blue-500'
   },
   {
@@ -452,7 +467,7 @@ const primaryMetrics = computed(() => [
       props.summary?.actualDaysUsed && props.summary?.actualDaysUsed < props.summary?.days
         ? `基于 ${props.summary.actualDaysUsed} 天实际使用`
         : '平均每日成本',
-    icon: 'fa-wave-square',
+    icon: PhWaveSquare,
     iconClass: 'text-purple-500'
   },
   {
@@ -460,7 +475,7 @@ const primaryMetrics = computed(() => [
     label: '日均请求',
     value: formatNumber(roundToTwo(props.summary?.avgDailyRequests || 0)),
     subtitle: '平均每日调用',
-    icon: 'fa-chart-line',
+    icon: PhChartLine,
     iconClass: 'text-orange-500'
   }
 ])

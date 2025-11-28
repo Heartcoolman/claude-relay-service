@@ -9,7 +9,7 @@
             <div
               class="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-green-500 to-green-600"
             >
-              <i class="fas fa-check text-lg text-white" />
+              <PhCheck class="text-lg text-white" :size="20" />
             </div>
             <div>
               <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100">API Key 创建成功</h3>
@@ -21,7 +21,7 @@
             title="直接关闭（不推荐）"
             @click="handleDirectClose"
           >
-            <i class="fas fa-times text-xl" />
+            <PhX class="text-xl" :size="20" />
           </button>
         </div>
 
@@ -33,7 +33,7 @@
             <div
               class="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-lg bg-amber-400 dark:bg-amber-500"
             >
-              <i class="fas fa-exclamation-triangle text-sm text-white" />
+              <PhWarningCircle class="text-sm text-white" :size="16" />
             </div>
             <div class="ml-3">
               <h5 class="mb-1 font-semibold text-amber-900 dark:text-amber-400">重要提醒</h5>
@@ -88,7 +88,8 @@
                   type="button"
                   @click="toggleKeyVisibility"
                 >
-                  <i :class="['fas', showFullKey ? 'fa-eye-slash' : 'fa-eye', 'text-gray-300']" />
+                  <PhEyeSlash v-if="showFullKey" class="text-gray-300" :size="16" />
+                  <PhEye v-else class="text-gray-300" :size="16" />
                 </button>
               </div>
             </div>
@@ -105,14 +106,14 @@
               class="flex w-full items-center justify-center gap-2 rounded-xl border border-blue-200 bg-blue-50 px-5 py-3 text-sm font-semibold text-blue-700 transition-colors hover:border-blue-300 hover:bg-blue-100 dark:border-blue-500/50 dark:bg-blue-500/10 dark:text-blue-200 dark:hover:bg-blue-500/20 sm:flex-1 sm:text-base"
               @click="copyKeyOnly"
             >
-              <i class="fas fa-key" />
+              <PhKey :size="16" />
               仅复制密钥
             </button>
             <button
               class="btn btn-primary flex w-full items-center justify-center gap-2 px-5 py-3 text-sm font-semibold sm:flex-1 sm:text-base"
               @click="copyFullConfig"
             >
-              <i class="fas fa-copy" />
+              <PhCopy :size="16" />
               复制Claude配置
             </button>
           </div>
@@ -120,7 +121,7 @@
             class="flex w-full items-center justify-center gap-2 rounded-xl border border-gray-300 bg-gray-200 px-5 py-3 text-sm font-semibold text-gray-800 transition-colors hover:border-gray-400 hover:bg-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600 sm:text-base"
             @click="handleClose"
           >
-            <i class="fas fa-check-circle" />
+            <PhCheckCircle :size="16" />
             我已保存
           </button>
         </div>
@@ -130,6 +131,16 @@
 </template>
 
 <script setup>
+import {
+  PhCheck,
+  PhCheckCircle,
+  PhCopy,
+  PhEye,
+  PhEyeSlash,
+  PhKey,
+  PhWarningCircle,
+  PhX
+} from '@phosphor-icons/vue'
 import { ref, computed } from 'vue'
 import { showToast } from '@/utils/toast'
 

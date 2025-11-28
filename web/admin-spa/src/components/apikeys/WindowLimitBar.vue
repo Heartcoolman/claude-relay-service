@@ -13,7 +13,7 @@
       <!-- 文字层 -->
       <div class="relative z-10 flex h-full items-center justify-between px-2">
         <div class="flex items-center gap-1.5">
-          <i class="fas fa-clock text-xs text-blue-600 dark:text-blue-400" />
+          <PhClock class="text-blue-600 dark:text-blue-400" :size="14" />
           <span class="text-xs font-medium text-gray-700 dark:text-gray-200">
             {{ rateLimitWindow }}分钟窗口
           </span>
@@ -82,6 +82,7 @@
 
 <script setup>
 import { computed } from 'vue'
+import { PhClock } from '@phosphor-icons/vue'
 
 const props = defineProps({
   rateLimitWindow: {

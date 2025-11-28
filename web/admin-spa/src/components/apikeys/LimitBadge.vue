@@ -1,7 +1,7 @@
 <template>
   <div class="inline-flex items-center gap-1.5 rounded-md px-2 py-1" :class="badgeClass">
     <div class="flex items-center gap-1">
-      <i :class="['text-xs', iconClass]" />
+      <component :is="iconComponent" :class="['text-xs', iconColorClass]" :size="14" />
       <span class="text-xs font-medium">{{ label }}</span>
     </div>
     <div class="flex items-center gap-1">
@@ -22,6 +22,7 @@
 
 <script setup>
 import { computed } from 'vue'
+import { PhCalendarBlank, PhClock, PhDiamond, PhInfo } from '@phosphor-icons/vue'
 
 const props = defineProps({
   type: {
@@ -62,18 +63,21 @@ const badgeClass = computed(() => {
   }
 })
 
-const iconClass = computed(() => {
+const iconConfig = computed(() => {
   switch (props.type) {
     case 'daily':
-      return 'fas fa-calendar-day text-gray-500'
+      return { component: PhCalendarBlank, class: 'text-gray-500' }
     case 'opus':
-      return 'fas fa-gem text-indigo-500'
+      return { component: PhDiamond, class: 'text-indigo-500' }
     case 'window':
-      return 'fas fa-clock text-blue-500'
+      return { component: PhClock, class: 'text-blue-500' }
     default:
-      return 'fas fa-info-circle text-gray-500'
+      return { component: PhInfo, class: 'text-gray-500' }
   }
 })
+
+const iconComponent = computed(() => iconConfig.value.component)
+const iconColorClass = computed(() => iconConfig.value.class)
 
 const progressClass = computed(() => {
   const p = progress.value

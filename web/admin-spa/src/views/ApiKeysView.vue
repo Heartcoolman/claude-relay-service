@@ -182,7 +182,8 @@
                 class="flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm transition-all duration-200 hover:border-gray-300 hover:bg-gray-50 hover:shadow-md dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
                 @click="toggleSelectionMode"
               >
-                <i :class="showCheckboxes ? 'fas fa-times' : 'fas fa-check-square'"></i>
+                <PhX v-if="showCheckboxes" :size="16" />
+                <PhCheckSquare v-else :size="16" />
                 <span>{{ showCheckboxes ? '取消选择' : '选择' }}</span>
               </button>
 
@@ -229,7 +230,7 @@
                 class="flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 px-5 py-2 text-sm font-medium text-white shadow-md transition-all duration-200 hover:from-blue-600 hover:to-blue-700 hover:shadow-lg sm:w-auto"
                 @click.stop="openCreateApiKeyModal"
               >
-                <i class="fas fa-plus"></i>
+                <PhPlus :size="16" />
                 <span>创建新 Key</span>
               </button>
             </div>
@@ -844,7 +845,7 @@
                             title="查看详细统计"
                             @click="showUsageDetails(key)"
                           >
-                            <i class="fas fa-chart-line" />
+                            <PhChartLine :size="16" />
                             <span class="ml-1 hidden xl:inline">详情</span>
                           </button>
                           <button
@@ -866,7 +867,7 @@
                             title="编辑"
                             @click="openEditApiKeyModal(key)"
                           >
-                            <i class="fas fa-edit" />
+                            <PhPencilSimple :size="16" />
                             <span class="ml-1 hidden xl:inline">编辑</span>
                           </button>
                           <button
@@ -879,7 +880,7 @@
                             title="续期"
                             @click="openRenewApiKeyModal(key)"
                           >
-                            <i class="fas fa-clock" />
+                            <PhClock :size="16" />
                             <span class="ml-1 hidden xl:inline">续期</span>
                           </button>
                           <button
@@ -892,7 +893,8 @@
                             :title="key.isActive ? '禁用' : '激活'"
                             @click="toggleApiKeyStatus(key)"
                           >
-                            <i :class="['fas', key.isActive ? 'fa-ban' : 'fa-check-circle']" />
+                            <PhProhibit v-if="key.isActive" :size="16" />
+                            <PhCheckCircle v-else :size="16" />
                             <span class="ml-1 hidden xl:inline">{{
                               key.isActive ? '禁用' : '激活'
                             }}</span>
@@ -902,7 +904,7 @@
                             title="删除"
                             @click="deleteApiKey(key.id)"
                           >
-                            <i class="fas fa-trash" />
+                            <PhTrash :size="16" />
                             <span class="ml-1 hidden xl:inline">删除</span>
                           </button>
                         </div>
@@ -1539,7 +1541,7 @@
                   class="flex flex-1 items-center justify-center gap-1 rounded-lg bg-blue-50 px-3 py-1.5 text-xs text-blue-600 transition-colors hover:bg-blue-100 dark:bg-blue-900/30 dark:hover:bg-blue-900/50"
                   @click="showUsageDetails(key)"
                 >
-                  <i class="fas fa-chart-line" />
+                  <PhChartLine :size="16" />
                   查看详情
                 </button>
                 <button
@@ -1569,14 +1571,15 @@
                   ]"
                   @click="toggleApiKeyStatus(key)"
                 >
-                  <i :class="['fas', key.isActive ? 'fa-ban' : 'fa-check-circle', 'mr-1']" />
+                  <PhProhibit v-if="key.isActive" class="mr-1" :size="16" />
+                  <PhCheckCircle v-else class="mr-1" :size="16" />
                   {{ key.isActive ? '禁用' : '激活' }}
                 </button>
                 <button
                   class="rounded-lg bg-red-50 px-3 py-1.5 text-xs text-red-600 transition-colors hover:bg-red-100 dark:bg-red-900/30 dark:hover:bg-red-900/50"
                   @click="deleteApiKey(key.id)"
                 >
-                  <i class="fas fa-trash" />
+                  <PhTrash :size="16" />
                 </button>
               </div>
             </div>
@@ -1612,7 +1615,7 @@
                 :disabled="currentPage === 1"
                 @click="currentPage--"
               >
-                <i class="fas fa-chevron-left" />
+                <PhCaretLeft :size="16" />
               </button>
 
               <!-- 页码 -->
@@ -1667,7 +1670,7 @@
                 :disabled="currentPage === totalPages || totalPages === 0"
                 @click="currentPage++"
               >
-                <i class="fas fa-chevron-right" />
+                <PhCaretRight :size="16" />
               </button>
             </div>
           </div>
@@ -2058,6 +2061,19 @@ import ExpiryEditModal from '@/components/apikeys/ExpiryEditModal.vue'
 import UsageDetailModal from '@/components/apikeys/UsageDetailModal.vue'
 import LimitProgressBar from '@/components/apikeys/LimitProgressBar.vue'
 import CustomDropdown from '@/components/common/CustomDropdown.vue'
+import {
+  PhPlus,
+  PhChartLine,
+  PhPencilSimple,
+  PhClock,
+  PhTrash,
+  PhCaretLeft,
+  PhCaretRight,
+  PhX,
+  PhCheckSquare,
+  PhProhibit,
+  PhCheckCircle
+} from '@phosphor-icons/vue'
 
 // 响应式数据
 const clientsStore = useClientsStore()

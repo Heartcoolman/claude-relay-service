@@ -5,7 +5,7 @@
         class="flex flex-col text-lg font-bold text-gray-900 dark:text-gray-100 sm:flex-row sm:items-center md:text-xl"
       >
         <span class="flex items-center">
-          <i class="fas fa-robot mr-2 text-sm text-indigo-500 md:mr-3 md:text-base" />
+          <PhRobot class="mr-2 text-indigo-500 md:mr-3 md:size-5" :size="16" />
           模型使用统计
         </span>
         <span class="text-xs font-normal text-gray-600 dark:text-gray-400 sm:ml-2 md:text-sm"
@@ -16,8 +16,9 @@
 
     <!-- 模型统计加载状态 -->
     <div v-if="modelStatsLoading" class="py-6 text-center md:py-8">
-      <i
-        class="fas fa-spinner loading-spinner mb-2 text-xl text-gray-600 dark:text-gray-400 md:text-2xl"
+      <PhSpinner
+        class="loading-spinner mb-2 text-xl text-gray-600 dark:text-gray-400 md:text-2xl"
+        :size="20"
       />
       <p class="text-sm text-gray-600 dark:text-gray-400 md:text-base">加载模型统计数据中...</p>
     </div>
@@ -73,7 +74,7 @@
 
     <!-- 无模型数据 -->
     <div v-else class="py-6 text-center text-gray-500 dark:text-gray-400 md:py-8">
-      <i class="fas fa-chart-pie mb-3 text-2xl md:text-3xl" />
+      <PhChartPie class="mb-3 md:size-8" :size="24" />
       <p class="text-sm md:text-base">
         暂无{{ statsPeriod === 'daily' ? '今日' : '本月' }}模型使用数据
       </p>
@@ -83,6 +84,7 @@
 
 <script setup>
 import { storeToRefs } from 'pinia'
+import { PhChartPie, PhRobot, PhSpinner } from '@phosphor-icons/vue'
 import { useApiStatsStore } from '@/stores/apistats'
 
 const apiStatsStore = useApiStatsStore()

@@ -12,9 +12,10 @@
         "
         >{{ selectedLabel }}</span
       >
-      <i
-        class="fas fa-chevron-down text-gray-400 transition-transform duration-200 dark:text-gray-500"
+      <PhCaretDown
+        class="text-gray-400 transition-transform duration-200 dark:text-gray-500"
         :class="{ 'rotate-180': showDropdown }"
+        :size="12"
       />
     </div>
 
@@ -46,8 +47,9 @@
                 type="text"
                 @input="handleSearch"
               />
-              <i
-                class="fas fa-search pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-sm text-gray-400 dark:text-gray-500"
+              <PhMagnifyingGlass
+                class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500"
+                :size="16"
               />
               <button
                 v-if="searchQuery"
@@ -55,7 +57,7 @@
                 type="button"
                 @click="clearSearch"
               >
-                <i class="fas fa-times text-sm" />
+                <PhX :size="14" />
               </button>
             </div>
           </div>
@@ -285,7 +287,7 @@
               v-if="searchQuery && !hasResults"
               class="px-4 py-8 text-center text-gray-500 dark:text-gray-400"
             >
-              <i class="fas fa-search mb-2 text-2xl" />
+              <PhMagnifyingGlass class="mb-2" :size="24" />
               <p class="text-sm">没有找到匹配的账号</p>
             </div>
           </div>
@@ -297,6 +299,7 @@
 
 <script setup>
 import { ref, computed, watch, nextTick, onMounted, onUnmounted } from 'vue'
+import { PhCaretDown, PhMagnifyingGlass, PhX } from '@phosphor-icons/vue'
 
 const props = defineProps({
   modelValue: {

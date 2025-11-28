@@ -7,7 +7,7 @@
             <div
               class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-green-500 to-green-600"
             >
-              <i class="fas fa-clock text-white" />
+              <PhClock class="text-white" :size="20" />
             </div>
             <h3 class="text-xl font-bold text-gray-900">续期 API Key</h3>
           </div>
@@ -15,7 +15,7 @@
             class="text-gray-400 transition-colors hover:text-gray-600"
             @click="$emit('close')"
           >
-            <i class="fas fa-times text-xl" />
+            <PhX class="text-xl" :size="20" />
           </button>
         </div>
 
@@ -25,7 +25,7 @@
               <div
                 class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-blue-500"
               >
-                <i class="fas fa-info text-sm text-white" />
+                <PhInfo class="text-sm text-white" :size="16" />
               </div>
               <div>
                 <h4 class="mb-1 font-semibold text-gray-800">API Key 信息</h4>
@@ -86,7 +86,7 @@
             @click="renewApiKey"
           >
             <div v-if="loading" class="loading-spinner mr-2" />
-            <i v-else class="fas fa-clock mr-2" />
+            <PhClock v-else class="mr-2" :size="16" />
             {{ loading ? '续期中...' : '确认续期' }}
           </button>
         </div>
@@ -96,6 +96,7 @@
 </template>
 
 <script setup>
+import { PhClock, PhInfo, PhX } from '@phosphor-icons/vue'
 import { ref, reactive, computed } from 'vue'
 import { showToast } from '@/utils/toast'
 import { apiClient } from '@/config/api'

@@ -9,7 +9,7 @@
             <div
               class="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-green-500 to-green-600"
             >
-              <i class="fas fa-layer-group text-lg text-white" />
+              <PhStack class="text-white" :size="18" />
             </div>
             <div>
               <h3 class="text-xl font-bold text-gray-900">批量创建成功</h3>
@@ -21,7 +21,7 @@
             title="直接关闭（不推荐）"
             @click="handleDirectClose"
           >
-            <i class="fas fa-times text-xl" />
+            <PhX :size="20" />
           </button>
         </div>
 
@@ -31,7 +31,7 @@
             <div
               class="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-lg bg-amber-400"
             >
-              <i class="fas fa-exclamation-triangle text-sm text-white" />
+              <PhWarningCircle class="text-white" :size="14" />
             </div>
             <div class="ml-3">
               <h5 class="mb-1 font-semibold text-amber-900">重要提醒</h5>
@@ -58,7 +58,7 @@
               <div
                 class="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-500 bg-opacity-20"
               >
-                <i class="fas fa-key text-blue-600" />
+                <PhKey class="text-blue-600" :size="18" />
               </div>
             </div>
           </div>
@@ -76,7 +76,7 @@
               <div
                 class="flex h-10 w-10 items-center justify-center rounded-lg bg-green-500 bg-opacity-20"
               >
-                <i class="fas fa-tag text-green-600" />
+                <PhTag class="text-green-600" :size="18" />
               </div>
             </div>
           </div>
@@ -94,7 +94,7 @@
               <div
                 class="flex h-10 w-10 items-center justify-center rounded-lg bg-purple-500 bg-opacity-20"
               >
-                <i class="fas fa-shield-alt text-purple-600" />
+                <PhShieldCheck class="text-purple-600" :size="18" />
               </div>
             </div>
           </div>
@@ -112,7 +112,7 @@
               <div
                 class="flex h-10 w-10 items-center justify-center rounded-lg bg-orange-500 bg-opacity-20"
               >
-                <i class="fas fa-clock text-orange-600" />
+                <PhClock class="text-orange-600" :size="18" />
               </div>
             </div>
           </div>
@@ -128,7 +128,7 @@
                 type="button"
                 @click="togglePreview"
               >
-                <i :class="['fas', showPreview ? 'fa-eye-slash' : 'fa-eye']" />
+                <component :is="showPreview ? PhEyeSlash : PhEye" :size="14" />
                 {{ showPreview ? '隐藏' : '显示' }}预览
               </button>
               <span class="text-xs text-gray-500">（最多显示前10个）</span>
@@ -149,7 +149,7 @@
             class="btn btn-primary flex flex-1 items-center justify-center gap-2 px-6 py-3 font-semibold"
             @click="downloadApiKeys"
           >
-            <i class="fas fa-download" />
+            <PhDownloadSimple :size="16" />
             下载所有 API Keys
           </button>
           <button
@@ -163,7 +163,7 @@
         <!-- 额外提示 -->
         <div class="mt-4 rounded-lg border border-blue-200 bg-blue-50 p-3">
           <p class="flex items-start text-xs text-blue-700">
-            <i class="fas fa-info-circle mr-2 mt-0.5 flex-shrink-0" />
+            <PhInfo class="mr-2 mt-0.5 flex-shrink-0" :size="14" />
             <span>
               下载的文件格式为文本文件（.txt），每行包含一个 API Key。
               请将文件保存在安全的位置，避免泄露。
@@ -177,6 +177,19 @@
 
 <script setup>
 import { ref, computed } from 'vue'
+import {
+  PhClock,
+  PhDownloadSimple,
+  PhEye,
+  PhEyeSlash,
+  PhInfo,
+  PhKey,
+  PhShieldCheck,
+  PhStack,
+  PhTag,
+  PhWarningCircle,
+  PhX
+} from '@phosphor-icons/vue'
 import { showToast } from '@/utils/toast'
 
 const props = defineProps({

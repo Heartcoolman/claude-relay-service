@@ -9,7 +9,7 @@
           <div
             class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-blue-500"
           >
-            <i class="fas fa-link text-white" />
+            <PhLink class="text-white" :size="20" />
           </div>
           <div class="flex-1">
             <h4 class="mb-3 font-semibold text-blue-900 dark:text-blue-200">Claude 账户授权</h4>
@@ -38,7 +38,7 @@
                       :disabled="loading"
                       @click="generateAuthUrl"
                     >
-                      <i v-if="!loading" class="fas fa-link mr-2" />
+                      <PhLink v-if="!loading" class="mr-2" :size="16" />
                       <div v-else class="loading-spinner mr-2" />
                       {{ loading ? '生成中...' : '生成授权链接' }}
                     </button>
@@ -55,14 +55,15 @@
                           title="复制链接"
                           @click="copyAuthUrl"
                         >
-                          <i :class="copied ? 'fas fa-check text-green-500' : 'fas fa-copy'" />
+                          <PhCheck v-if="copied" class="text-green-500" :size="16" />
+                          <PhCopy v-else :size="16" />
                         </button>
                       </div>
                       <button
                         class="text-xs text-blue-600 hover:text-blue-700"
                         @click="regenerateAuthUrl"
                       >
-                        <i class="fas fa-sync-alt mr-1" />重新生成
+                        <PhArrowsClockwise class="mr-1" :size="16" />重新生成
                       </button>
                     </div>
                   </div>
@@ -90,7 +91,7 @@
                       class="rounded border border-yellow-300 bg-yellow-50 p-3 dark:border-yellow-700 dark:bg-yellow-900/30"
                     >
                       <p class="text-xs text-yellow-800 dark:text-yellow-300">
-                        <i class="fas fa-exclamation-triangle mr-1" />
+                        <PhWarningCircle class="mr-1" :size="16" />
                         <strong>注意：</strong
                         >如果您设置了代理，请确保浏览器也使用相同的代理访问授权页面。
                       </p>
@@ -122,7 +123,7 @@
                         <label
                           class="mb-2 block text-sm font-semibold text-gray-700 dark:text-gray-300"
                         >
-                          <i class="fas fa-key mr-2 text-blue-500" />Authorization Code
+                          <PhKey class="mr-2 text-blue-500" :size="16" />Authorization Code
                         </label>
                         <textarea
                           v-model="authCode"
@@ -132,7 +133,7 @@
                         />
                       </div>
                       <p class="mt-2 text-xs text-gray-500 dark:text-gray-400">
-                        <i class="fas fa-info-circle mr-1" />
+                        <PhInfo class="mr-1" :size="16" />
                         请粘贴从Claude页面复制的Authorization Code
                       </p>
                     </div>
@@ -154,7 +155,7 @@
           <div
             class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-green-500"
           >
-            <i class="fas fa-robot text-white" />
+            <PhRobot class="text-white" :size="20" />
           </div>
           <div class="flex-1">
             <h4 class="mb-3 font-semibold text-green-900 dark:text-green-200">Gemini 账户授权</h4>
@@ -183,7 +184,7 @@
                       :disabled="loading"
                       @click="generateAuthUrl"
                     >
-                      <i v-if="!loading" class="fas fa-link mr-2" />
+                      <PhLink v-if="!loading" class="mr-2" :size="16" />
                       <div v-else class="loading-spinner mr-2" />
                       {{ loading ? '生成中...' : '生成授权链接' }}
                     </button>
@@ -200,14 +201,15 @@
                           title="复制链接"
                           @click="copyAuthUrl"
                         >
-                          <i :class="copied ? 'fas fa-check text-green-500' : 'fas fa-copy'" />
+                          <PhCheck v-if="copied" class="text-green-500" :size="16" />
+                          <PhCopy v-else :size="16" />
                         </button>
                       </div>
                       <button
                         class="text-xs text-green-600 hover:text-green-700"
                         @click="regenerateAuthUrl"
                       >
-                        <i class="fas fa-sync-alt mr-1" />重新生成
+                        <PhArrowsClockwise class="mr-1" :size="16" />重新生成
                       </button>
                     </div>
                   </div>
@@ -235,7 +237,7 @@
                       class="rounded border border-yellow-300 bg-yellow-50 p-3 dark:border-yellow-700 dark:bg-yellow-900/30"
                     >
                       <p class="text-xs text-yellow-800 dark:text-yellow-300">
-                        <i class="fas fa-exclamation-triangle mr-1" />
+                        <PhWarningCircle class="mr-1" :size="16" />
                         <strong>注意：</strong
                         >如果您设置了代理，请确保浏览器也使用相同的代理访问授权页面。
                       </p>
@@ -266,7 +268,7 @@
                         <label
                           class="mb-2 block text-sm font-semibold text-gray-700 dark:text-gray-300"
                         >
-                          <i class="fas fa-key mr-2 text-green-500" />Authorization Code
+                          <PhKey class="mr-2 text-green-500" :size="16" />Authorization Code
                         </label>
                         <textarea
                           v-model="authCode"
@@ -277,7 +279,7 @@
                       </div>
                       <div class="mt-2 space-y-1">
                         <p class="text-xs text-gray-600 dark:text-gray-400">
-                          <i class="fas fa-check-circle mr-1 text-green-500" />
+                          <PhCheckCircle class="mr-1 text-green-500" :size="16" />
                           请粘贴从Gemini页面复制的Authorization Code
                         </p>
                       </div>
@@ -300,7 +302,7 @@
           <div
             class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-orange-500"
           >
-            <i class="fas fa-brain text-white" />
+            <PhBrain class="text-white" :size="20" />
           </div>
           <div class="flex-1">
             <h4 class="mb-3 font-semibold text-orange-900 dark:text-orange-200">OpenAI 账户授权</h4>
@@ -329,7 +331,7 @@
                       :disabled="loading"
                       @click="generateAuthUrl"
                     >
-                      <i v-if="!loading" class="fas fa-link mr-2" />
+                      <PhLink v-if="!loading" class="mr-2" :size="16" />
                       <div v-else class="loading-spinner mr-2" />
                       {{ loading ? '生成中...' : '生成授权链接' }}
                     </button>
@@ -346,14 +348,15 @@
                           title="复制链接"
                           @click="copyAuthUrl"
                         >
-                          <i :class="copied ? 'fas fa-check text-green-500' : 'fas fa-copy'" />
+                          <PhCheck v-if="copied" class="text-green-500" :size="16" />
+                          <PhCopy v-else :size="16" />
                         </button>
                       </div>
                       <button
                         class="text-xs text-orange-600 hover:text-orange-700"
                         @click="regenerateAuthUrl"
                       >
-                        <i class="fas fa-sync-alt mr-1" />重新生成
+                        <PhArrowsClockwise class="mr-1" :size="16" />重新生成
                       </button>
                     </div>
                   </div>
@@ -381,7 +384,7 @@
                       class="mb-3 rounded border border-amber-300 bg-amber-50 p-3 dark:border-amber-700 dark:bg-amber-900/30"
                     >
                       <p class="text-xs text-amber-800 dark:text-amber-300">
-                        <i class="fas fa-clock mr-1" />
+                        <PhClock class="mr-1" :size="16" />
                         <strong>重要提示：</strong>授权后页面可能会加载较长时间，请耐心等待。
                       </p>
                       <p class="mt-2 text-xs text-amber-700 dark:text-amber-400">
@@ -394,7 +397,7 @@
                       class="rounded border border-yellow-300 bg-yellow-50 p-3 dark:border-yellow-700 dark:bg-yellow-900/30"
                     >
                       <p class="text-xs text-yellow-800 dark:text-yellow-300">
-                        <i class="fas fa-exclamation-triangle mr-1" />
+                        <PhWarningCircle class="mr-1" :size="16" />
                         <strong>注意：</strong
                         >如果您设置了代理，请确保浏览器也使用相同的代理访问授权页面。
                       </p>
@@ -426,7 +429,7 @@
                         <label
                           class="mb-2 block text-sm font-semibold text-gray-700 dark:text-gray-300"
                         >
-                          <i class="fas fa-link mr-2 text-orange-500" />授权链接或 Code
+                          <PhLink class="mr-2 text-orange-500" :size="16" />授权链接或 Code
                         </label>
                         <textarea
                           v-model="authCode"
@@ -439,7 +442,7 @@
                         class="rounded border border-blue-300 bg-blue-50 p-2 dark:border-blue-700 dark:bg-blue-900/30"
                       >
                         <p class="text-xs text-blue-700 dark:text-blue-300">
-                          <i class="fas fa-lightbulb mr-1" />
+                          <PhLightbulb class="mr-1" :size="16" />
                           <strong>提示：</strong>您可以直接复制整个链接或仅复制 code
                           参数值，系统会自动识别。
                         </p>
@@ -473,7 +476,7 @@
           <div
             class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-cyan-500"
           >
-            <i class="fas fa-robot text-white" />
+            <PhRobot class="text-white" :size="20" />
           </div>
           <div class="flex-1">
             <h4 class="mb-3 font-semibold text-cyan-900 dark:text-cyan-200">Droid 账户授权</h4>
@@ -502,7 +505,7 @@
                       :disabled="loading"
                       @click="generateAuthUrl"
                     >
-                      <i v-if="!loading" class="fas fa-link mr-2" />
+                      <PhLink v-if="!loading" class="mr-2" :size="16" />
                       <div v-else class="loading-spinner mr-2" />
                       {{ loading ? '生成中...' : '生成授权链接' }}
                     </button>
@@ -526,7 +529,8 @@
                               title="复制链接"
                               @click="copyAuthUrl"
                             >
-                              <i :class="copied ? 'fas fa-check text-green-500' : 'fas fa-copy'" />
+                              <PhCheck v-if="copied" class="text-green-500" :size="16" />
+                              <PhCopy v-else :size="16" />
                             </button>
                           </div>
                           <div class="flex flex-wrap items-center gap-2">
@@ -534,13 +538,13 @@
                               class="inline-flex items-center gap-1 rounded-md border border-cyan-200 bg-white px-3 py-1.5 text-xs font-medium text-cyan-600 shadow-sm transition-colors hover:border-cyan-300 hover:bg-cyan-50 dark:border-cyan-700 dark:bg-cyan-900/40 dark:text-cyan-200 dark:hover:border-cyan-500 dark:hover:bg-cyan-900/60"
                               @click="openVerificationPage"
                             >
-                              <i class="fas fa-external-link-alt text-xs" /> 在新标签中打开
+                              <PhArrowSquareOut class="text-xs" :size="16" /> 在新标签中打开
                             </button>
                             <button
                               class="inline-flex items-center gap-1 rounded-md px-3 py-1.5 text-xs font-medium text-cyan-600 transition-colors hover:text-cyan-700 dark:text-cyan-300 dark:hover:text-cyan-200"
                               @click="regenerateAuthUrl"
                             >
-                              <i class="fas fa-sync-alt text-xs" />重新生成
+                              <PhArrowsClockwise class="text-xs" :size="16" />重新生成
                             </button>
                           </div>
                         </div>
@@ -561,7 +565,7 @@
                             class="rounded-lg bg-white px-3 py-1 text-sm text-cyan-600 transition-colors hover:bg-cyan-100 dark:bg-cyan-800 dark:text-cyan-200 dark:hover:bg-cyan-700"
                             @click="copyUserCode"
                           >
-                            <i class="fas fa-copy mr-1" />复制
+                            <PhCopy class="mr-1" :size="16" />复制
                           </button>
                         </div>
                       </div>
@@ -569,7 +573,7 @@
                         class="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400"
                       >
                         <span>
-                          <i class="fas fa-hourglass-half mr-1 text-cyan-500" />
+                          <PhHourglass class="mr-1 text-cyan-500" :size="16" />
                           剩余有效期：{{ formattedCountdown }}
                         </span>
                       </div>
@@ -650,6 +654,22 @@
 </template>
 
 <script setup>
+import {
+  PhArrowSquareOut,
+  PhArrowsClockwise,
+  PhBrain,
+  PhCheck,
+  PhCheckCircle,
+  PhClock,
+  PhCopy,
+  PhHourglass,
+  PhInfo,
+  PhKey,
+  PhLightbulb,
+  PhLink,
+  PhRobot,
+  PhWarningCircle
+} from '@phosphor-icons/vue'
 import { ref, computed, watch, onBeforeUnmount } from 'vue'
 import { showToast } from '@/utils/toast'
 import { useAccountsStore } from '@/stores/accounts'

@@ -27,7 +27,7 @@
             class="user-login-button flex items-center gap-2 rounded-2xl px-4 py-2 text-white transition-all duration-300 md:px-5 md:py-2.5"
             to="/user-login"
           >
-            <i class="fas fa-user text-sm md:text-base" />
+            <PhUser class="text-sm md:text-base" :size="16" />
             <span class="text-xs font-semibold tracking-wide md:text-sm">用户登录</span>
           </router-link>
           <!-- 管理后台按钮 -->
@@ -36,7 +36,7 @@
             class="admin-button-refined flex items-center gap-2 rounded-2xl px-4 py-2 transition-all duration-300 md:px-5 md:py-2.5"
             to="/dashboard"
           >
-            <i class="fas fa-shield-alt text-sm md:text-base" />
+            <PhShieldCheck class="text-sm md:text-base" :size="16" />
             <span class="text-xs font-semibold tracking-wide md:text-sm">管理后台</span>
           </router-link>
         </div>
@@ -53,14 +53,14 @@
             :class="['tab-pill-button', currentTab === 'stats' ? 'active' : '']"
             @click="currentTab = 'stats'"
           >
-            <i class="fas fa-chart-line mr-1 md:mr-2" />
+            <PhChartLine class="mr-1 md:mr-2" :size="16" />
             <span class="text-sm md:text-base">统计查询</span>
           </button>
           <button
             :class="['tab-pill-button', currentTab === 'tutorial' ? 'active' : '']"
             @click="currentTab = 'tutorial'"
           >
-            <i class="fas fa-graduation-cap mr-1 md:mr-2" />
+            <PhGraduationCap class="mr-1 md:mr-2" :size="16" />
             <span class="text-sm md:text-base">使用教程</span>
           </button>
         </div>
@@ -77,7 +77,7 @@
         <div
           class="rounded-xl border border-red-500/30 bg-red-500/20 p-3 text-sm text-red-800 backdrop-blur-sm dark:border-red-500/20 dark:bg-red-500/10 dark:text-red-200 md:p-4 md:text-base"
         >
-          <i class="fas fa-exclamation-triangle mr-2" />
+          <PhWarningCircle class="mr-2" :size="16" />
           {{ error }}
         </div>
       </div>
@@ -91,7 +91,7 @@
               class="flex flex-col items-start justify-between gap-3 md:flex-row md:items-center md:gap-4"
             >
               <div class="flex items-center gap-2 md:gap-3">
-                <i class="fas fa-clock text-base text-blue-500 md:text-lg" />
+                <PhClock class="text-base text-blue-500 md:text-lg" :size="20" />
                 <span class="text-base font-medium text-gray-700 dark:text-gray-200 md:text-lg"
                   >统计时间范围</span
                 >
@@ -103,7 +103,7 @@
                   :disabled="loading || modelStatsLoading"
                   @click="switchPeriod('daily')"
                 >
-                  <i class="fas fa-calendar-day text-xs md:text-sm" />
+                  <PhCalendar class="text-xs md:text-sm" :size="16" />
                   今日
                 </button>
                 <button
@@ -112,7 +112,7 @@
                   :disabled="loading || modelStatsLoading"
                   @click="switchPeriod('monthly')"
                 >
-                  <i class="fas fa-calendar-alt text-xs md:text-sm" />
+                  <PhCalendarBlank class="text-xs md:text-sm" :size="16" />
                   本月
                 </button>
               </div>
@@ -154,6 +154,16 @@
 import { ref, onMounted, onUnmounted, watch, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { storeToRefs } from 'pinia'
+import {
+  PhCalendar,
+  PhCalendarBlank,
+  PhChartLine,
+  PhClock,
+  PhGraduationCap,
+  PhShieldCheck,
+  PhUser,
+  PhWarningCircle
+} from '@phosphor-icons/vue'
 import { useApiStatsStore } from '@/stores/apistats'
 import { useThemeStore } from '@/stores/theme'
 import LogoTitle from '@/components/common/LogoTitle.vue'

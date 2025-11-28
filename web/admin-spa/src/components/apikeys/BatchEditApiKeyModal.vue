@@ -9,7 +9,7 @@
             <div
               class="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 sm:h-10 sm:w-10 sm:rounded-xl"
             >
-              <i class="fas fa-edit text-sm text-white sm:text-base" />
+              <PhPencilSimple class="text-white sm:size-5" :size="16" />
             </div>
             <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100 sm:text-xl">
               批量编辑 API Keys ({{ selectedCount }} 个)
@@ -19,7 +19,7 @@
             class="p-1 text-gray-400 transition-colors hover:text-gray-600 dark:hover:text-gray-300"
             @click="$emit('close')"
           >
-            <i class="fas fa-times text-lg sm:text-xl" />
+            <PhX class="sm:size-6" :size="18" />
           </button>
         </div>
 
@@ -30,7 +30,7 @@
           <!-- 说明文本 -->
           <div class="rounded-lg bg-blue-50 p-4 dark:bg-blue-900/20">
             <div class="flex items-start gap-3">
-              <i class="fas fa-info-circle mt-1 text-blue-500" />
+              <PhInfo class="mt-1 text-blue-500" :size="16" />
               <div>
                 <p class="text-sm font-medium text-blue-800 dark:text-blue-300">批量编辑说明</p>
                 <p class="mt-1 text-sm text-blue-700 dark:text-blue-400">
@@ -94,7 +94,7 @@
                         type="button"
                         @click="removeTag(index)"
                       >
-                        <i class="fas fa-times text-xs" />
+                        <PhX :size="12" />
                       </button>
                     </span>
                   </div>
@@ -113,7 +113,7 @@
                       type="button"
                       @click="selectTag(tag)"
                     >
-                      <i class="fas fa-tag text-xs text-gray-500 dark:text-gray-400" />
+                      <PhTag class="text-gray-500 dark:text-gray-400" :size="12" />
                       {{ tag }}
                     </button>
                   </div>
@@ -137,7 +137,7 @@
                       type="button"
                       @click="addTag"
                     >
-                      <i class="fas fa-plus" />
+                      <PhPlus :size="14" />
                     </button>
                   </div>
                 </div>
@@ -153,7 +153,7 @@
               <div
                 class="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded bg-blue-500"
               >
-                <i class="fas fa-tachometer-alt text-xs text-white" />
+                <PhGauge class="text-white" :size="12" />
               </div>
               <h4 class="text-sm font-semibold text-gray-800 dark:text-gray-200">速率限制设置</h4>
             </div>
@@ -331,13 +331,8 @@
                 type="button"
                 @click="refreshAccounts"
               >
-                <i
-                  :class="[
-                    'fas',
-                    accountsLoading ? 'fa-spinner fa-spin' : 'fa-sync-alt',
-                    'text-xs'
-                  ]"
-                />
+                <PhSpinner v-if="accountsLoading" class="animate-spin" :size="14" />
+                <PhArrowsClockwise v-else :size="14" />
                 <span>{{ accountsLoading ? '刷新中...' : '刷新账号' }}</span>
               </button>
             </div>
@@ -434,7 +429,7 @@
               type="submit"
             >
               <div v-if="loading" class="loading-spinner mr-2" />
-              <i v-else class="fas fa-save mr-2" />
+              <PhFloppyDisk v-else class="mr-2" :size="16" />
               {{ loading ? '保存中...' : '批量保存' }}
             </button>
           </div>
@@ -446,6 +441,17 @@
 
 <script setup>
 import { ref, reactive, computed, onMounted } from 'vue'
+import {
+  PhArrowsClockwise,
+  PhFloppyDisk,
+  PhGauge,
+  PhInfo,
+  PhPencilSimple,
+  PhPlus,
+  PhSpinner,
+  PhTag,
+  PhX
+} from '@phosphor-icons/vue'
 import { showToast } from '@/utils/toast'
 import { useApiKeysStore } from '@/stores/apiKeys'
 import { apiClient } from '@/config/api'

@@ -2,7 +2,7 @@
   <div class="glass-strong rounded-3xl p-6">
     <div class="mb-6 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
       <h2 class="flex items-center text-xl font-bold text-gray-800">
-        <i class="fas fa-robot mr-2 text-purple-500" />
+        <PhRobot class="mr-2 text-purple-500" :size="18" />
         模型使用分布
       </h2>
 
@@ -16,7 +16,7 @@
       v-if="dashboardStore.dashboardModelStats.length === 0"
       class="py-12 text-center text-gray-500"
     >
-      <i class="fas fa-chart-pie mb-3 text-4xl opacity-30" />
+      <PhChartPie class="mb-3 opacity-30" :size="32" />
       <p>暂无模型使用数据</p>
     </div>
 
@@ -51,6 +51,7 @@
 import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 import { Chart } from 'chart.js/auto'
 import { useDashboardStore } from '@/stores/dashboard'
+import { PhChartPie, PhRobot } from '@phosphor-icons/vue'
 import { useChartConfig } from '@/composables/useChartConfig'
 import { formatNumber } from '@/utils/format'
 

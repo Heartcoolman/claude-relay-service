@@ -9,7 +9,7 @@
             <div
               class="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-purple-500 to-purple-600 sm:h-10 sm:w-10 sm:rounded-xl"
             >
-              <i class="fas fa-layer-group text-sm text-white sm:text-base" />
+              <PhStack class="text-sm text-white sm:text-base" :size="16" />
             </div>
             <h3 class="text-lg font-bold text-gray-900 sm:text-xl">账户分组管理</h3>
           </div>
@@ -17,14 +17,14 @@
             class="p-1 text-gray-400 transition-colors hover:text-gray-600"
             @click="$emit('close')"
           >
-            <i class="fas fa-times text-lg sm:text-xl" />
+            <PhX class="text-lg sm:text-xl" :size="20" />
           </button>
         </div>
 
         <!-- 添加分组按钮 -->
         <div class="mb-6">
           <button class="btn btn-primary px-4 py-2" @click="showCreateForm = true">
-            <i class="fas fa-plus mr-2" />
+            <PhPlus class="mr-2" :size="16" />
             创建新分组
           </button>
         </div>
@@ -97,7 +97,7 @@
           </div>
 
           <div v-else-if="groups.length === 0" class="rounded-lg bg-gray-50 py-8 text-center">
-            <i class="fas fa-layer-group mb-4 text-4xl text-gray-300" />
+            <PhStack class="mb-4 text-4xl text-gray-300" :size="20" />
             <p class="text-gray-500">暂无分组</p>
           </div>
 
@@ -145,11 +145,11 @@
               <div class="flex items-center justify-between text-sm text-gray-600">
                 <div class="flex items-center gap-4">
                   <span>
-                    <i class="fas fa-users mr-1" />
+                    <PhUsers class="mr-1" :size="16" />
                     {{ group.memberCount || 0 }} 个成员
                   </span>
                   <span>
-                    <i class="fas fa-clock mr-1" />
+                    <PhClock class="mr-1" :size="16" />
                     {{ formatDate(group.createdAt) }}
                   </span>
                 </div>
@@ -159,7 +159,7 @@
                     title="编辑"
                     @click="editGroup(group)"
                   >
-                    <i class="fas fa-edit" />
+                    <PhPencilSimple :size="16" />
                   </button>
                   <button
                     class="text-red-600 transition-colors hover:text-red-800"
@@ -167,7 +167,7 @@
                     title="删除"
                     @click="deleteGroup(group)"
                   >
-                    <i class="fas fa-trash" />
+                    <PhTrash :size="16" />
                   </button>
                 </div>
               </div>
@@ -186,7 +186,7 @@
         <div class="mb-4 flex items-center justify-between">
           <h3 class="text-lg font-bold text-gray-900">编辑分组</h3>
           <button class="text-gray-400 transition-colors hover:text-gray-600" @click="cancelEdit">
-            <i class="fas fa-times" />
+            <PhX :size="16" />
           </button>
         </div>
 
@@ -243,6 +243,15 @@
 </template>
 
 <script setup>
+import {
+  PhClock,
+  PhPencilSimple,
+  PhPlus,
+  PhStack,
+  PhTrash,
+  PhUsers,
+  PhX
+} from '@phosphor-icons/vue'
 import { ref, onMounted } from 'vue'
 import { showToast } from '@/utils/toast'
 import { apiClient } from '@/config/api'

@@ -14,14 +14,14 @@
             <div
               class="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 sm:h-10 sm:w-10 sm:rounded-xl"
             >
-              <i class="fas fa-chart-line text-sm text-white sm:text-base" />
+              <PhChartLine class="text-sm text-white sm:text-base" :size="16" />
             </div>
             <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100 sm:text-xl">
               使用统计详情 - {{ apiKey.name }}
             </h3>
           </div>
           <button class="p-1 text-gray-400 transition-colors hover:text-gray-600" @click="close">
-            <i class="fas fa-times text-lg sm:text-xl" />
+            <PhX class="text-lg sm:text-xl" :size="20" />
           </button>
         </div>
 
@@ -35,7 +35,7 @@
             >
               <div class="mb-3 flex items-center justify-between">
                 <span class="text-sm font-medium text-gray-700 dark:text-gray-300">总请求数</span>
-                <i class="fas fa-paper-plane text-blue-500" />
+                <PhPaperPlaneTilt class="text-blue-500" :size="16" />
               </div>
               <div class="text-2xl font-bold text-gray-900 dark:text-gray-100">
                 {{ formatNumber(totalRequests) }}
@@ -51,7 +51,7 @@
             >
               <div class="mb-3 flex items-center justify-between">
                 <span class="text-sm font-medium text-gray-700 dark:text-gray-300">总Token数</span>
-                <i class="fas fa-coins text-green-500" />
+                <PhCoins class="text-green-500" :size="16" />
               </div>
               <div class="text-2xl font-bold text-gray-900 dark:text-gray-100">
                 {{ formatTokenCount(totalTokens) }}
@@ -67,7 +67,7 @@
             >
               <div class="mb-3 flex items-center justify-between">
                 <span class="text-sm font-medium text-gray-700 dark:text-gray-300">总费用</span>
-                <i class="fas fa-dollar-sign text-yellow-600" />
+                <PhCurrencyDollar class="text-yellow-600" :size="16" />
               </div>
               <div class="text-2xl font-bold text-gray-900 dark:text-gray-100">
                 ${{ totalCost.toFixed(4) }}
@@ -83,7 +83,7 @@
             >
               <div class="mb-3 flex items-center justify-between">
                 <span class="text-sm font-medium text-gray-700 dark:text-gray-300">平均速率</span>
-                <i class="fas fa-tachometer-alt text-purple-500" />
+                <PhGauge class="text-purple-500" :size="16" />
               </div>
               <div class="space-y-1 text-sm">
                 <div class="flex justify-between">
@@ -103,13 +103,13 @@
             <h4
               class="mb-3 flex items-center text-sm font-semibold text-gray-700 dark:text-gray-300"
             >
-              <i class="fas fa-chart-pie mr-2 text-indigo-500" />
+              <PhChartPie class="mr-2 text-indigo-500" :size="16" />
               Token 使用分布
             </h4>
             <div class="space-y-3 rounded-lg bg-gray-50 p-4 dark:bg-gray-700/50">
               <div class="flex items-center justify-between">
                 <div class="flex items-center">
-                  <i class="fas fa-arrow-down mr-2 text-green-500" />
+                  <PhArrowDown class="mr-2 text-green-500" :size="16" />
                   <span class="text-sm text-gray-600 dark:text-gray-400">输入 Token</span>
                 </div>
                 <span class="text-sm font-semibold text-gray-900 dark:text-gray-100">
@@ -118,7 +118,7 @@
               </div>
               <div class="flex items-center justify-between">
                 <div class="flex items-center">
-                  <i class="fas fa-arrow-up mr-2 text-blue-500" />
+                  <PhArrowUp class="mr-2 text-blue-500" :size="16" />
                   <span class="text-sm text-gray-600 dark:text-gray-400">输出 Token</span>
                 </div>
                 <span class="text-sm font-semibold text-gray-900 dark:text-gray-100">
@@ -127,7 +127,7 @@
               </div>
               <div v-if="cacheCreateTokens > 0" class="flex items-center justify-between">
                 <div class="flex items-center">
-                  <i class="fas fa-save mr-2 text-purple-500" />
+                  <PhFloppyDisk class="mr-2 text-purple-500" :size="16" />
                   <span class="text-sm text-gray-600 dark:text-gray-400">缓存创建 Token</span>
                 </div>
                 <span class="text-sm font-semibold text-purple-600">
@@ -136,7 +136,7 @@
               </div>
               <div v-if="cacheReadTokens > 0" class="flex items-center justify-between">
                 <div class="flex items-center">
-                  <i class="fas fa-download mr-2 text-purple-500" />
+                  <PhDownloadSimple class="mr-2 text-purple-500" :size="16" />
                   <span class="text-sm text-gray-600 dark:text-gray-400">缓存读取 Token</span>
                 </div>
                 <span class="text-sm font-semibold text-purple-600">
@@ -151,7 +151,7 @@
             <h4
               class="mb-3 flex items-center text-sm font-semibold text-gray-700 dark:text-gray-300"
             >
-              <i class="fas fa-shield-alt mr-2 text-red-500" />
+              <PhShieldCheck class="mr-2 text-red-500" :size="16" />
               限制设置
             </h4>
             <div class="space-y-3 rounded-lg bg-gray-50 p-4 dark:bg-gray-700/50">
@@ -206,7 +206,7 @@
 
               <div v-if="apiKey.rateLimitWindow > 0" class="space-y-2">
                 <h5 class="text-sm font-medium text-gray-700 dark:text-gray-300">
-                  <i class="fas fa-clock mr-1 text-blue-500" />
+                  <PhClock class="mr-1 text-blue-500" :size="16" />
                   时间窗口限制
                 </h5>
                 <WindowCountdown
@@ -241,6 +241,21 @@
 </template>
 
 <script setup>
+import {
+  PhArrowDown,
+  PhArrowUp,
+  PhChartLine,
+  PhChartPie,
+  PhClock,
+  PhCoins,
+  PhCurrencyDollar,
+  PhDownloadSimple,
+  PhFloppyDisk,
+  PhGauge,
+  PhPaperPlaneTilt,
+  PhShieldCheck,
+  PhX
+} from '@phosphor-icons/vue'
 import { computed } from 'vue'
 import LimitProgressBar from './LimitProgressBar.vue'
 import WindowCountdown from './WindowCountdown.vue'

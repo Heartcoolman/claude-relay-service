@@ -12,7 +12,7 @@
           :src="logoSrc"
           @error="handleLogoError"
         />
-        <i v-else class="fas fa-cloud text-xl text-gray-700 dark:text-gray-300" />
+        <PhCloud v-else class="text-gray-700 dark:text-gray-300" :size="20" />
       </template>
       <div v-else class="h-8 w-8 animate-pulse rounded bg-gray-300/50 dark:bg-gray-600/50" />
     </div>
@@ -40,6 +40,8 @@
 </template>
 
 <script setup>
+import { PhCloud } from '@phosphor-icons/vue'
+
 defineProps({
   loading: {
     type: Boolean,

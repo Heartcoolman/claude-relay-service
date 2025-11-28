@@ -18,7 +18,7 @@
             </p>
           </div>
           <div class="stat-icon flex-shrink-0 bg-gradient-to-br from-blue-500 to-blue-600">
-            <i class="fas fa-key" />
+            <PhKey :size="20" />
           </div>
         </div>
       </div>
@@ -44,7 +44,7 @@
                   class="inline-flex items-center gap-0.5"
                   :title="`Claude: ${dashboardData.accountsByPlatform.claude.total} 个 (正常: ${dashboardData.accountsByPlatform.claude.normal})`"
                 >
-                  <i class="fas fa-brain text-xs text-indigo-600" />
+                  <PhBrain class="text-indigo-600" :size="12" />
                   <span class="text-xs font-medium text-gray-700 dark:text-gray-300">{{
                     dashboardData.accountsByPlatform.claude.total
                   }}</span>
@@ -58,7 +58,7 @@
                   class="inline-flex items-center gap-0.5"
                   :title="`Console: ${dashboardData.accountsByPlatform['claude-console'].total} 个 (正常: ${dashboardData.accountsByPlatform['claude-console'].normal})`"
                 >
-                  <i class="fas fa-terminal text-xs text-purple-600" />
+                  <PhTerminal class="text-purple-600" :size="12" />
                   <span class="text-xs font-medium text-gray-700 dark:text-gray-300">{{
                     dashboardData.accountsByPlatform['claude-console'].total
                   }}</span>
@@ -72,7 +72,7 @@
                   class="inline-flex items-center gap-0.5"
                   :title="`Gemini: ${dashboardData.accountsByPlatform.gemini.total} 个 (正常: ${dashboardData.accountsByPlatform.gemini.normal})`"
                 >
-                  <i class="fas fa-robot text-xs text-yellow-600" />
+                  <PhRobot class="text-yellow-600" :size="12" />
                   <span class="text-xs font-medium text-gray-700 dark:text-gray-300">{{
                     dashboardData.accountsByPlatform.gemini.total
                   }}</span>
@@ -86,7 +86,7 @@
                   class="inline-flex items-center gap-0.5"
                   :title="`Bedrock: ${dashboardData.accountsByPlatform.bedrock.total} 个 (正常: ${dashboardData.accountsByPlatform.bedrock.normal})`"
                 >
-                  <i class="fab fa-aws text-xs text-orange-600" />
+                  <PhCloud class="text-orange-600" :size="12" />
                   <span class="text-xs font-medium text-gray-700 dark:text-gray-300">{{
                     dashboardData.accountsByPlatform.bedrock.total
                   }}</span>
@@ -100,7 +100,7 @@
                   class="inline-flex items-center gap-0.5"
                   :title="`OpenAI: ${dashboardData.accountsByPlatform.openai.total} 个 (正常: ${dashboardData.accountsByPlatform.openai.normal})`"
                 >
-                  <i class="fas fa-openai text-xs text-gray-100" />
+                  <PhRobot class="text-gray-100" :size="12" />
                   <span class="text-xs font-medium text-gray-700 dark:text-gray-300">{{
                     dashboardData.accountsByPlatform.openai.total
                   }}</span>
@@ -114,7 +114,7 @@
                   class="inline-flex items-center gap-0.5"
                   :title="`Azure OpenAI: ${dashboardData.accountsByPlatform.azure_openai.total} 个 (正常: ${dashboardData.accountsByPlatform.azure_openai.normal})`"
                 >
-                  <i class="fab fa-microsoft text-xs text-blue-600" />
+                  <PhSquaresFour class="text-blue-600" :size="12" />
                   <span class="text-xs font-medium text-gray-700 dark:text-gray-300">{{
                     dashboardData.accountsByPlatform.azure_openai.total
                   }}</span>
@@ -128,7 +128,7 @@
                   class="inline-flex items-center gap-0.5"
                   :title="`OpenAI Responses: ${dashboardData.accountsByPlatform['openai-responses'].total} 个 (正常: ${dashboardData.accountsByPlatform['openai-responses'].normal})`"
                 >
-                  <i class="fas fa-server text-xs text-cyan-600" />
+                  <PhHardDrives class="text-cyan-600" :size="12" />
                   <span class="text-xs font-medium text-gray-700 dark:text-gray-300">{{
                     dashboardData.accountsByPlatform['openai-responses'].total
                   }}</span>
@@ -152,7 +152,7 @@
             </p>
           </div>
           <div class="stat-icon ml-2 flex-shrink-0 bg-gradient-to-br from-green-500 to-green-600">
-            <i class="fas fa-user-circle" />
+            <PhUserCircle :size="20" />
           </div>
         </div>
       </div>
@@ -171,7 +171,7 @@
             </p>
           </div>
           <div class="stat-icon flex-shrink-0 bg-gradient-to-br from-purple-500 to-purple-600">
-            <i class="fas fa-chart-line" />
+            <PhChartLine :size="20" />
           </div>
         </div>
       </div>
@@ -190,7 +190,7 @@
             </p>
           </div>
           <div class="stat-icon flex-shrink-0 bg-gradient-to-br from-yellow-500 to-orange-500">
-            <i class="fas fa-heartbeat" />
+            <PhHeartbeat :size="20" />
           </div>
         </div>
       </div>
@@ -251,7 +251,7 @@
             </div>
           </div>
           <div class="stat-icon flex-shrink-0 bg-gradient-to-br from-indigo-500 to-indigo-600">
-            <i class="fas fa-coins" />
+            <PhCoins :size="20" />
           </div>
         </div>
       </div>
@@ -307,7 +307,7 @@
             </div>
           </div>
           <div class="stat-icon flex-shrink-0 bg-gradient-to-br from-emerald-500 to-emerald-600">
-            <i class="fas fa-database" />
+            <PhDatabase :size="20" />
           </div>
         </div>
       </div>
@@ -325,12 +325,12 @@
             <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">
               每分钟请求数
               <span v-if="dashboardData.isHistoricalMetrics" class="text-yellow-600">
-                <i class="fas fa-exclamation-circle" /> 历史数据
+                <PhWarning class="inline" :size="12" /> 历史数据
               </span>
             </p>
           </div>
           <div class="stat-icon flex-shrink-0 bg-gradient-to-br from-orange-500 to-orange-600">
-            <i class="fas fa-tachometer-alt" />
+            <PhGauge :size="20" />
           </div>
         </div>
       </div>
@@ -348,12 +348,12 @@
             <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">
               每分钟Token数
               <span v-if="dashboardData.isHistoricalMetrics" class="text-yellow-600">
-                <i class="fas fa-exclamation-circle" /> 历史数据
+                <PhWarning class="inline" :size="12" /> 历史数据
               </span>
             </p>
           </div>
           <div class="stat-icon flex-shrink-0 bg-gradient-to-br from-rose-500 to-rose-600">
-            <i class="fas fa-rocket" />
+            <PhRocket :size="20" />
           </div>
         </div>
       </div>
@@ -396,7 +396,7 @@
               ]"
               @click="setTrendGranularity('day')"
             >
-              <i class="fas fa-calendar-day mr-1" />按天
+              <PhCalendarBlank class="mr-1" :size="14" />按天
             </button>
             <button
               :class="[
@@ -407,7 +407,7 @@
               ]"
               @click="setTrendGranularity('hour')"
             >
-              <i class="fas fa-clock mr-1" />按小时
+              <PhClock class="mr-1" :size="14" />按小时
             </button>
           </div>
 
@@ -429,7 +429,7 @@
               @change="onCustomDateRangeChange"
             />
             <span v-if="trendGranularity === 'hour'" class="text-xs text-orange-600">
-              <i class="fas fa-info-circle" /> 最多24小时
+              <PhInfo class="inline" :size="12" /> 最多24小时
             </span>
           </div>
 
@@ -446,7 +446,7 @@
                 <span
                   class="ml-2.5 flex select-none items-center gap-1 text-sm font-medium text-gray-600 dark:text-gray-300"
                 >
-                  <i class="fas fa-redo-alt text-xs text-gray-500 dark:text-gray-400" />
+                  <PhArrowClockwise class="text-gray-500 dark:text-gray-400" :size="12" />
                   <span>自动刷新</span>
                   <span
                     v-if="autoRefreshEnabled"
@@ -466,7 +466,7 @@
               title="立即刷新数据"
               @click="refreshAllData()"
             >
-              <i :class="['fas fa-sync-alt text-xs', { 'animate-spin': isRefreshing }]" />
+              <PhArrowsClockwise :class="{ 'animate-spin': isRefreshing }" :size="12" />
               <span class="hidden sm:inline">{{ isRefreshing ? '刷新中' : '刷新' }}</span>
             </button>
           </div>
@@ -593,7 +593,8 @@
               ]"
               @click="((apiKeysTrendMetric = 'requests'), updateApiKeysUsageTrendChart())"
             >
-              <i class="fas fa-exchange-alt mr-1" /><span class="hidden sm:inline">请求次数</span
+              <PhArrowsLeftRight class="mr-1" :size="14" /><span class="hidden sm:inline"
+                >请求次数</span
               ><span class="sm:hidden">请求</span>
             </button>
             <button
@@ -605,7 +606,7 @@
               ]"
               @click="((apiKeysTrendMetric = 'tokens'), updateApiKeysUsageTrendChart())"
             >
-              <i class="fas fa-coins mr-1" /><span class="hidden sm:inline">Token 数量</span
+              <PhCoins class="mr-1" :size="14" /><span class="hidden sm:inline">Token 数量</span
               ><span class="sm:hidden">Token</span>
             </button>
           </div>
@@ -682,6 +683,29 @@ import { storeToRefs } from 'pinia'
 import { useDashboardStore } from '@/stores/dashboard'
 import { useThemeStore } from '@/stores/theme'
 import Chart from 'chart.js/auto'
+import {
+  PhKey,
+  PhBrain,
+  PhTerminal,
+  PhRobot,
+  PhCloud,
+  PhSquaresFour,
+  PhHardDrives,
+  PhUserCircle,
+  PhChartLine,
+  PhHeartbeat,
+  PhCoins,
+  PhDatabase,
+  PhWarning,
+  PhGauge,
+  PhRocket,
+  PhCalendarBlank,
+  PhClock,
+  PhInfo,
+  PhArrowClockwise,
+  PhArrowsClockwise,
+  PhArrowsLeftRight
+} from '@phosphor-icons/vue'
 
 const dashboardStore = useDashboardStore()
 const themeStore = useThemeStore()

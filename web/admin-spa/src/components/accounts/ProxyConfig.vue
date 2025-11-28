@@ -18,7 +18,7 @@
     >
       <div class="mb-3 flex items-start gap-3">
         <div class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-gray-500">
-          <i class="fas fa-server text-sm text-white" />
+          <PhHardDrives class="text-sm text-white" :size="16" />
         </div>
         <div class="flex-1">
           <p class="text-sm text-gray-700 dark:text-gray-300">
@@ -54,15 +54,15 @@
             type="button"
             @click="clearProxyUrl"
           >
-            <i class="fas fa-times" />
+            <PhX :size="16" />
           </button>
         </div>
         <p v-if="parseError" class="mt-1 text-xs text-red-500">
-          <i class="fas fa-exclamation-circle mr-1" />
+          <PhWarning class="mr-1" :size="16" />
           {{ parseError }}
         </p>
         <p v-else-if="parseSuccess" class="mt-1 text-xs text-green-500">
-          <i class="fas fa-check-circle mr-1" />
+          <PhCheckCircle class="mr-1" :size="16" />
           代理配置已自动填充
         </p>
       </div>
@@ -152,7 +152,8 @@
                 type="button"
                 @click="showPassword = !showPassword"
               >
-                <i :class="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'" />
+                <PhEyeSlash v-if="showPassword" :size="16" />
+                <PhEye v-else :size="16" />
               </button>
             </div>
           </div>
@@ -163,7 +164,7 @@
         class="rounded-lg border border-blue-200 bg-blue-50 p-3 dark:border-blue-700 dark:bg-blue-900/30"
       >
         <p class="text-xs text-blue-700 dark:text-blue-300">
-          <i class="fas fa-info-circle mr-1" />
+          <PhInfo class="mr-1" :size="16" />
           <strong>提示：</strong
           >代理设置将用于所有与此账户相关的API请求。请确保代理服务器支持HTTPS流量转发。
         </p>
@@ -173,6 +174,15 @@
 </template>
 
 <script setup>
+import {
+  PhCheckCircle,
+  PhEye,
+  PhEyeSlash,
+  PhHardDrives,
+  PhInfo,
+  PhWarning,
+  PhX
+} from '@phosphor-icons/vue'
 import { ref, watch, onUnmounted } from 'vue'
 
 const props = defineProps({

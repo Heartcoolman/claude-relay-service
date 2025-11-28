@@ -3,7 +3,7 @@
     <!-- 标题区域 -->
     <div class="wide-card-title mb-6">
       <h2 class="mb-2 text-2xl font-bold text-gray-900 dark:text-gray-200">
-        <i class="fas fa-chart-line mr-3" />
+        <PhChartLine class="chart-line-icon mr-3" :size="20" />
         使用统计查询
       </h2>
       <p class="text-base text-gray-600 dark:text-gray-400">查询您的 API Key 使用情况和统计数据</p>
@@ -15,7 +15,7 @@
       <div class="control-bar mb-4 flex flex-wrap items-center justify-between gap-3">
         <!-- API Key 标签 -->
         <label class="text-sm font-medium text-gray-700 dark:text-gray-300">
-          <i class="fas fa-key mr-2" />
+          <PhKey class="mr-2" :size="16" />
           {{ multiKeyMode ? '输入您的 API Keys（每行一个或用逗号分隔）' : '输入您的 API Key' }}
         </label>
 
@@ -31,7 +31,7 @@
               title="单一模式"
               @click="multiKeyMode = false"
             >
-              <i class="fas fa-key" />
+              <PhKey class="mode-icon" :size="16" />
               <span class="ml-2 hidden sm:inline">单一</span>
             </button>
             <button
@@ -40,7 +40,7 @@
               title="聚合模式"
               @click="multiKeyMode = true"
             >
-              <i class="fas fa-layer-group" />
+              <PhStack class="mode-icon" :size="16" />
               <span class="ml-2 hidden sm:inline">聚合</span>
               <span
                 v-if="multiKeyMode && parsedApiKeys.length > 0"
@@ -83,7 +83,7 @@
               title="清空输入"
               @click="clearInput"
             >
-              <i class="fas fa-times-circle" />
+              <PhXCircle :size="16" />
             </button>
           </div>
         </div>
@@ -95,8 +95,8 @@
             :disabled="loading || !hasValidInput"
             @click="queryStats"
           >
-            <i v-if="loading" class="fas fa-spinner loading-spinner" />
-            <i v-else class="fas fa-search" />
+            <PhSpinner v-if="loading" class="loading-spinner" :size="16" />
+            <PhMagnifyingGlass v-else :size="16" />
             {{ loading ? '查询中...' : '查询统计' }}
           </button>
         </div>
@@ -104,7 +104,7 @@
 
       <!-- 安全提示 -->
       <div class="security-notice mt-4">
-        <i class="fas fa-shield-alt mr-2" />
+        <PhShieldCheck class="shield-icon mr-2" :size="16" />
         {{
           multiKeyMode
             ? '您的 API Keys 仅用于查询统计数据，不会被存储。聚合模式下部分个体化信息将不显示。'
@@ -117,7 +117,7 @@
         v-if="multiKeyMode"
         class="mt-2 rounded-lg bg-blue-50 p-3 text-sm text-blue-700 dark:bg-blue-900/20 dark:text-blue-400"
       >
-        <i class="fas fa-lightbulb mr-2" />
+        <PhLightbulb class="mr-2" :size="16" />
         <span>提示：最多支持同时查询 30 个 API Keys。使用 Ctrl+Enter 快速查询。</span>
       </div>
     </div>
@@ -127,6 +127,16 @@
 <script setup>
 import { computed } from 'vue'
 import { storeToRefs } from 'pinia'
+import {
+  PhChartLine,
+  PhKey,
+  PhLightbulb,
+  PhMagnifyingGlass,
+  PhShieldCheck,
+  PhSpinner,
+  PhStack,
+  PhXCircle
+} from '@phosphor-icons/vue'
 import { useApiStatsStore } from '@/stores/apistats'
 
 const apiStatsStore = useApiStatsStore()
@@ -214,7 +224,7 @@ const hasValidInput = computed(() => {
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 }
 
-.wide-card-title .fas.fa-chart-line {
+.wide-card-title .chart-line-icon {
   color: #3b82f6;
   text-shadow: 0 1px 2px rgba(59, 130, 246, 0.2);
 }
@@ -339,7 +349,7 @@ const hasValidInput = computed(() => {
   color: #e5e7eb !important;
 }
 
-.security-notice .fas.fa-shield-alt {
+.security-notice .shield-icon {
   color: #10b981;
   text-shadow: 0 1px 2px rgba(16, 185, 129, 0.2);
 }
@@ -415,8 +425,9 @@ const hasValidInput = computed(() => {
   box-shadow: 0 4px 6px rgba(102, 126, 234, 0.3);
 }
 
-.mode-switch-btn i {
-  font-size: 0.875rem;
+.mode-switch-btn .mode-icon {
+  width: 14px;
+  height: 14px;
 }
 
 /* 淡入淡出动画 */

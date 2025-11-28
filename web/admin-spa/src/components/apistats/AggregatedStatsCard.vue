@@ -4,7 +4,7 @@
       class="mb-3 flex flex-col text-lg font-bold text-gray-900 dark:text-gray-100 sm:flex-row sm:items-center md:mb-4 md:text-xl"
     >
       <span class="flex items-center">
-        <i class="fas fa-chart-pie mr-2 text-sm text-orange-500 md:mr-3 md:text-base" />
+        <PhChartPie class="mr-2 text-orange-500 md:mr-3 md:size-5" :size="16" />
         使用占比
       </span>
       <span class="text-xs font-normal text-gray-600 dark:text-gray-400 sm:ml-2 md:text-sm"
@@ -53,7 +53,7 @@
       class="flex h-32 items-center justify-center text-sm text-gray-500 dark:text-gray-400"
     >
       <div class="text-center">
-        <i class="fas fa-chart-pie mb-2 text-2xl" />
+        <PhChartPie class="mb-2" :size="24" />
         <p>使用占比仅在多Key查询时显示</p>
       </div>
     </div>
@@ -62,7 +62,7 @@
       v-else
       class="flex h-32 items-center justify-center text-sm text-gray-500 dark:text-gray-400"
     >
-      <i class="fas fa-chart-pie mr-2" />
+      <PhChartPie class="mr-2" :size="16" />
       暂无数据
     </div>
   </div>
@@ -71,6 +71,7 @@
 <script setup>
 import { computed } from 'vue'
 import { storeToRefs } from 'pinia'
+import { PhChartPie } from '@phosphor-icons/vue'
 import { useApiStatsStore } from '@/stores/apistats'
 
 const apiStatsStore = useApiStatsStore()

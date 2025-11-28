@@ -29,7 +29,7 @@
                 target="_blank"
                 title="有新版本可用"
               >
-                <i class="fas fa-arrow-up text-[10px]" />
+                <PhArrowUp :size="10" />
                 <span>新版本</span>
               </a>
             </div>
@@ -54,11 +54,12 @@
             class="user-menu-button flex items-center gap-2 rounded-2xl bg-gradient-to-r from-blue-500 to-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-lg transition-all duration-200 hover:scale-105 hover:shadow-xl active:scale-95 sm:px-4 sm:py-2.5"
             @click="userMenuOpen = !userMenuOpen"
           >
-            <i class="fas fa-user-circle text-sm sm:text-base" />
+            <PhUserCircle :size="18" />
             <span class="hidden sm:inline">{{ currentUser.username || 'Admin' }}</span>
-            <i
-              class="fas fa-chevron-down ml-1 text-xs transition-transform duration-200"
+            <PhCaretDown
+              class="ml-1 transition-transform duration-200"
               :class="{ 'rotate-180': userMenuOpen }"
+              :size="12"
             />
           </button>
 
@@ -80,7 +81,7 @@
               <div v-if="versionInfo.hasUpdate" class="mt-2">
                 <div class="mb-2 flex items-center justify-between text-sm">
                   <span class="font-medium text-green-600 dark:text-green-400">
-                    <i class="fas fa-arrow-up mr-1" />有新版本
+                    <PhArrowUp class="mr-1 inline" :size="12" />有新版本
                   </span>
                   <span class="font-mono text-green-600 dark:text-green-400"
                     >v{{ versionInfo.latest }}</span
@@ -91,14 +92,14 @@
                   :href="versionInfo.releaseInfo?.htmlUrl || '#'"
                   target="_blank"
                 >
-                  <i class="fas fa-external-link-alt mr-1" />查看更新
+                  <PhArrowSquareOut class="mr-1 inline" :size="12" />查看更新
                 </a>
               </div>
               <div
                 v-else-if="versionInfo.checkingUpdate"
                 class="mt-2 text-center text-xs text-gray-500 dark:text-gray-400"
               >
-                <i class="fas fa-spinner fa-spin mr-1" />检查更新中...
+                <PhSpinner class="mr-1 inline animate-spin" :size="12" />检查更新中...
               </div>
               <div v-else class="mt-2 text-center">
                 <!-- 已是最新版提醒 -->
@@ -109,7 +110,7 @@
                     class="inline-block rounded-lg border border-green-200 bg-green-100 px-3 py-1.5 dark:border-green-800 dark:bg-green-900/30"
                   >
                     <p class="text-xs font-medium text-green-700 dark:text-green-400">
-                      <i class="fas fa-check-circle mr-1" />当前已是最新版本
+                      <PhCheckCircle class="mr-1 inline" :size="12" />当前已是最新版本
                     </p>
                   </div>
                   <button
@@ -118,7 +119,7 @@
                     class="text-xs text-blue-500 transition-colors hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
                     @click="checkForUpdates()"
                   >
-                    <i class="fas fa-sync-alt mr-1" />检查更新
+                    <PhArrowsClockwise class="mr-1 inline" :size="12" />检查更新
                   </button>
                 </transition>
               </div>
@@ -128,7 +129,7 @@
               class="flex w-full items-center gap-3 px-4 py-3 text-left text-gray-700 transition-colors hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-700"
               @click="openChangePasswordModal"
             >
-              <i class="fas fa-key text-blue-500" />
+              <PhKey class="text-blue-500" :size="16" />
               <span>修改账户信息</span>
             </button>
 
@@ -138,7 +139,7 @@
               class="flex w-full items-center gap-3 px-4 py-3 text-left text-gray-700 transition-colors hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-700"
               @click="logout"
             >
-              <i class="fas fa-sign-out-alt text-red-500" />
+              <PhSignOut class="text-red-500" :size="16" />
               <span>退出登录</span>
             </button>
           </div>
@@ -158,7 +159,7 @@
           <div
             class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-blue-600"
           >
-            <i class="fas fa-key text-white" />
+            <PhKey class="text-white" :size="20" />
           </div>
           <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100">修改账户信息</h3>
         </div>
@@ -166,7 +167,7 @@
           class="text-gray-400 transition-colors hover:text-gray-600 dark:hover:text-gray-300"
           @click="closeChangePasswordModal"
         >
-          <i class="fas fa-times text-xl" />
+          <PhX :size="20" />
         </button>
       </div>
 
@@ -256,7 +257,7 @@
             type="submit"
           >
             <div v-if="changePasswordLoading" class="loading-spinner mr-2" />
-            <i v-else class="fas fa-save mr-2" />
+            <PhFloppyDisk v-else class="mr-2 inline" :size="16" />
             {{ changePasswordLoading ? '保存中...' : '保存修改' }}
           </button>
         </div>
@@ -273,6 +274,19 @@ import { showToast } from '@/utils/toast'
 import { apiClient } from '@/config/api'
 import LogoTitle from '@/components/common/LogoTitle.vue'
 import ThemeToggle from '@/components/common/ThemeToggle.vue'
+import {
+  PhUserCircle,
+  PhCaretDown,
+  PhArrowUp,
+  PhArrowSquareOut,
+  PhSpinner,
+  PhCheckCircle,
+  PhArrowsClockwise,
+  PhKey,
+  PhSignOut,
+  PhX,
+  PhFloppyDisk
+} from '@phosphor-icons/vue'
 
 const router = useRouter()
 const authStore = useAuthStore()

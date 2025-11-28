@@ -9,7 +9,7 @@
       >
         <div class="toast-content">
           <div class="toast-icon">
-            <i :class="getIconClass(toast.type)" />
+            <component :is="getIconComponent(toast.type)" :size="20" />
           </div>
           <div class="toast-body">
             <div v-if="toast.title" class="toast-title">
@@ -20,7 +20,7 @@
             </div>
           </div>
           <button class="toast-close" @click.stop="removeToast(toast.id)">
-            <i class="fas fa-times" />
+            <PhX :size="16" />
           </button>
         </div>
         <div
@@ -35,18 +35,19 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
+import { PhCheckCircle, PhInfo, PhWarning, PhWarningCircle, PhX } from '@phosphor-icons/vue'
 
 // 状态
 const toasts = ref([])
 let toastIdCounter = 0
 
-// 获取图标类名
-const getIconClass = (type) => {
+// 获取图标组件
+const getIconComponent = (type) => {
   const iconMap = {
-    success: 'fas fa-check-circle',
-    error: 'fas fa-exclamation-circle',
-    warning: 'fas fa-exclamation-triangle',
-    info: 'fas fa-info-circle'
+    success: PhCheckCircle,
+    error: PhWarning,
+    warning: PhWarningCircle,
+    info: PhInfo
   }
   return iconMap[type] || iconMap.info
 }
