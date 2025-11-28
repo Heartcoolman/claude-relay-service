@@ -444,39 +444,57 @@
                               <span
                                 class="inline-flex min-w-[140px] items-center justify-between rounded border border-indigo-200 bg-indigo-50 dark:border-indigo-700 dark:bg-indigo-900/20"
                               >
-                                <span class="inline-flex items-center px-1.5 py-0.5 text-indigo-700 dark:text-indigo-300">
+                                <span
+                                  class="inline-flex items-center px-1.5 py-0.5 text-indigo-700 dark:text-indigo-300"
+                                >
                                   <i class="fas fa-brain mr-1 text-[10px]" />
                                   Claude
                                 </span>
-                                <span class="border-l border-indigo-200 px-1.5 py-0.5 text-indigo-600 dark:border-indigo-700 dark:text-indigo-400">
+                                <span
+                                  class="border-l border-indigo-200 px-1.5 py-0.5 text-indigo-600 dark:border-indigo-700 dark:text-indigo-400"
+                                >
                                   {{ getClaudeBindingInfo(key) }}
                                 </span>
                               </span>
                             </div>
                             <!-- Gemini 绑定 -->
-                            <div v-if="key.geminiAccountId" class="inline-flex items-center text-xs">
+                            <div
+                              v-if="key.geminiAccountId"
+                              class="inline-flex items-center text-xs"
+                            >
                               <span
                                 class="inline-flex min-w-[140px] items-center justify-between rounded border border-yellow-200 bg-yellow-50 dark:border-yellow-700 dark:bg-yellow-900/20"
                               >
-                                <span class="inline-flex items-center px-1.5 py-0.5 text-yellow-700 dark:text-yellow-300">
+                                <span
+                                  class="inline-flex items-center px-1.5 py-0.5 text-yellow-700 dark:text-yellow-300"
+                                >
                                   <i class="fas fa-robot mr-1 text-[10px]" />
                                   Gemini
                                 </span>
-                                <span class="border-l border-yellow-200 px-1.5 py-0.5 text-yellow-600 dark:border-yellow-700 dark:text-yellow-400">
+                                <span
+                                  class="border-l border-yellow-200 px-1.5 py-0.5 text-yellow-600 dark:border-yellow-700 dark:text-yellow-400"
+                                >
                                   {{ getGeminiBindingInfo(key) }}
                                 </span>
                               </span>
                             </div>
                             <!-- OpenAI 绑定 -->
-                            <div v-if="key.openaiAccountId" class="inline-flex items-center text-xs">
+                            <div
+                              v-if="key.openaiAccountId"
+                              class="inline-flex items-center text-xs"
+                            >
                               <span
                                 class="inline-flex min-w-[140px] items-center justify-between rounded border border-gray-200 bg-gray-50 dark:border-gray-600 dark:bg-gray-700/50"
                               >
-                                <span class="inline-flex items-center px-1.5 py-0.5 text-gray-700 dark:text-gray-300">
+                                <span
+                                  class="inline-flex items-center px-1.5 py-0.5 text-gray-700 dark:text-gray-300"
+                                >
                                   <i class="fa-openai mr-1 text-[10px]" />
                                   OpenAI
                                 </span>
-                                <span class="border-l border-gray-200 px-1.5 py-0.5 text-gray-600 dark:border-gray-600 dark:text-gray-400">
+                                <span
+                                  class="border-l border-gray-200 px-1.5 py-0.5 text-gray-600 dark:border-gray-600 dark:text-gray-400"
+                                >
                                   {{ getOpenAIBindingInfo(key) }}
                                 </span>
                               </span>
@@ -489,11 +507,15 @@
                               <span
                                 class="inline-flex min-w-[140px] items-center justify-between rounded border border-orange-200 bg-orange-50 dark:border-orange-700 dark:bg-orange-900/20"
                               >
-                                <span class="inline-flex items-center px-1.5 py-0.5 text-orange-700 dark:text-orange-300">
+                                <span
+                                  class="inline-flex items-center px-1.5 py-0.5 text-orange-700 dark:text-orange-300"
+                                >
                                   <i class="fas fa-cloud mr-1 text-[10px]" />
                                   Bedrock
                                 </span>
-                                <span class="border-l border-orange-200 px-1.5 py-0.5 text-orange-600 dark:border-orange-700 dark:text-orange-400">
+                                <span
+                                  class="border-l border-orange-200 px-1.5 py-0.5 text-orange-600 dark:border-orange-700 dark:text-orange-400"
+                                >
                                   {{ getBedrockBindingInfo(key) }}
                                 </span>
                               </span>
@@ -503,11 +525,15 @@
                               <span
                                 class="inline-flex min-w-[140px] items-center justify-between rounded border border-cyan-200 bg-cyan-50 dark:border-cyan-700 dark:bg-cyan-900/20"
                               >
-                                <span class="inline-flex items-center px-1.5 py-0.5 text-cyan-700 dark:text-cyan-300">
+                                <span
+                                  class="inline-flex items-center px-1.5 py-0.5 text-cyan-700 dark:text-cyan-300"
+                                >
                                   <i class="fas fa-robot mr-1 text-[10px]" />
                                   Droid
                                 </span>
-                                <span class="border-l border-cyan-200 px-1.5 py-0.5 text-cyan-600 dark:border-cyan-700 dark:text-cyan-400">
+                                <span
+                                  class="border-l border-cyan-200 px-1.5 py-0.5 text-cyan-600 dark:border-cyan-700 dark:text-cyan-400"
+                                >
                                   {{ getDroidBindingInfo(key) }}
                                 </span>
                               </span>
@@ -1237,11 +1263,15 @@
                   <span
                     class="inline-flex min-w-[140px] items-center justify-between rounded border border-indigo-200 bg-indigo-50 dark:border-indigo-700 dark:bg-indigo-900/20"
                   >
-                    <span class="inline-flex items-center px-2 py-0.5 text-indigo-700 dark:text-indigo-300">
+                    <span
+                      class="inline-flex items-center px-2 py-0.5 text-indigo-700 dark:text-indigo-300"
+                    >
                       <i class="fas fa-brain mr-1" />
                       Claude
                     </span>
-                    <span class="border-l border-indigo-200 px-2 py-0.5 text-indigo-600 dark:border-indigo-700 dark:text-indigo-400">
+                    <span
+                      class="border-l border-indigo-200 px-2 py-0.5 text-indigo-600 dark:border-indigo-700 dark:text-indigo-400"
+                    >
                       {{ getClaudeBindingInfo(key) }}
                     </span>
                   </span>
@@ -1251,11 +1281,15 @@
                   <span
                     class="inline-flex min-w-[140px] items-center justify-between rounded border border-yellow-200 bg-yellow-50 dark:border-yellow-700 dark:bg-yellow-900/20"
                   >
-                    <span class="inline-flex items-center px-2 py-0.5 text-yellow-700 dark:text-yellow-300">
+                    <span
+                      class="inline-flex items-center px-2 py-0.5 text-yellow-700 dark:text-yellow-300"
+                    >
                       <i class="fas fa-robot mr-1" />
                       Gemini
                     </span>
-                    <span class="border-l border-yellow-200 px-2 py-0.5 text-yellow-600 dark:border-yellow-700 dark:text-yellow-400">
+                    <span
+                      class="border-l border-yellow-200 px-2 py-0.5 text-yellow-600 dark:border-yellow-700 dark:text-yellow-400"
+                    >
                       {{ getGeminiBindingInfo(key) }}
                     </span>
                   </span>
@@ -1265,11 +1299,15 @@
                   <span
                     class="inline-flex min-w-[140px] items-center justify-between rounded border border-gray-200 bg-gray-50 dark:border-gray-600 dark:bg-gray-700/50"
                   >
-                    <span class="inline-flex items-center px-2 py-0.5 text-gray-700 dark:text-gray-300">
+                    <span
+                      class="inline-flex items-center px-2 py-0.5 text-gray-700 dark:text-gray-300"
+                    >
                       <i class="fa-openai mr-1" />
                       OpenAI
                     </span>
-                    <span class="border-l border-gray-200 px-2 py-0.5 text-gray-600 dark:border-gray-600 dark:text-gray-400">
+                    <span
+                      class="border-l border-gray-200 px-2 py-0.5 text-gray-600 dark:border-gray-600 dark:text-gray-400"
+                    >
                       {{ getOpenAIBindingInfo(key) }}
                     </span>
                   </span>
@@ -1279,11 +1317,15 @@
                   <span
                     class="inline-flex min-w-[140px] items-center justify-between rounded border border-orange-200 bg-orange-50 dark:border-orange-700 dark:bg-orange-900/20"
                   >
-                    <span class="inline-flex items-center px-2 py-0.5 text-orange-700 dark:text-orange-300">
+                    <span
+                      class="inline-flex items-center px-2 py-0.5 text-orange-700 dark:text-orange-300"
+                    >
                       <i class="fas fa-cloud mr-1" />
                       Bedrock
                     </span>
-                    <span class="border-l border-orange-200 px-2 py-0.5 text-orange-600 dark:border-orange-700 dark:text-orange-400">
+                    <span
+                      class="border-l border-orange-200 px-2 py-0.5 text-orange-600 dark:border-orange-700 dark:text-orange-400"
+                    >
                       {{ getBedrockBindingInfo(key) }}
                     </span>
                   </span>
@@ -1293,11 +1335,15 @@
                   <span
                     class="inline-flex min-w-[140px] items-center justify-between rounded border border-cyan-200 bg-cyan-50 dark:border-cyan-700 dark:bg-cyan-900/20"
                   >
-                    <span class="inline-flex items-center px-2 py-0.5 text-cyan-700 dark:text-cyan-300">
+                    <span
+                      class="inline-flex items-center px-2 py-0.5 text-cyan-700 dark:text-cyan-300"
+                    >
                       <i class="fas fa-robot mr-1" />
                       Droid
                     </span>
-                    <span class="border-l border-cyan-200 px-2 py-0.5 text-cyan-600 dark:border-cyan-700 dark:text-cyan-400">
+                    <span
+                      class="border-l border-cyan-200 px-2 py-0.5 text-cyan-600 dark:border-cyan-700 dark:text-cyan-400"
+                    >
                       {{ getDroidBindingInfo(key) }}
                     </span>
                   </span>
