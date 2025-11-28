@@ -17,7 +17,7 @@
               活跃: {{ dashboardData.activeApiKeys || 0 }}
             </p>
           </div>
-          <div class="stat-icon flex-shrink-0 bg-gradient-to-br from-blue-500 to-blue-600">
+          <div class="stat-icon flex-shrink-0 bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
             <PhKey :size="20" />
           </div>
         </div>
@@ -151,7 +151,7 @@
               </span>
             </p>
           </div>
-          <div class="stat-icon ml-2 flex-shrink-0 bg-gradient-to-br from-green-500 to-green-600">
+          <div class="stat-icon ml-2 flex-shrink-0 bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400">
             <PhUserCircle :size="20" />
           </div>
         </div>
@@ -170,7 +170,7 @@
               总请求: {{ formatNumber(dashboardData.totalRequests || 0) }}
             </p>
           </div>
-          <div class="stat-icon flex-shrink-0 bg-gradient-to-br from-purple-500 to-purple-600">
+          <div class="stat-icon flex-shrink-0 bg-purple-100 text-purple-600 dark:bg-purple-900/30 dark:text-purple-400">
             <PhChartLine :size="20" />
           </div>
         </div>
@@ -189,7 +189,7 @@
               运行时间: {{ formattedUptime }}
             </p>
           </div>
-          <div class="stat-icon flex-shrink-0 bg-gradient-to-br from-yellow-500 to-orange-500">
+          <div class="stat-icon flex-shrink-0 bg-amber-100 text-amber-600 dark:bg-amber-900/30 dark:text-amber-400">
             <PhHeartbeat :size="20" />
           </div>
         </div>
@@ -250,7 +250,7 @@
               </div>
             </div>
           </div>
-          <div class="stat-icon flex-shrink-0 bg-gradient-to-br from-indigo-500 to-indigo-600">
+          <div class="stat-icon flex-shrink-0 bg-indigo-100 text-indigo-600 dark:bg-indigo-900/30 dark:text-indigo-400">
             <PhCoins :size="20" />
           </div>
         </div>
@@ -306,7 +306,7 @@
               </div>
             </div>
           </div>
-          <div class="stat-icon flex-shrink-0 bg-gradient-to-br from-emerald-500 to-emerald-600">
+          <div class="stat-icon flex-shrink-0 bg-emerald-100 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400">
             <PhDatabase :size="20" />
           </div>
         </div>
@@ -329,7 +329,7 @@
               </span>
             </p>
           </div>
-          <div class="stat-icon flex-shrink-0 bg-gradient-to-br from-orange-500 to-orange-600">
+          <div class="stat-icon flex-shrink-0 bg-orange-100 text-orange-600 dark:bg-orange-900/30 dark:text-orange-400">
             <PhGauge :size="20" />
           </div>
         </div>
@@ -352,7 +352,7 @@
               </span>
             </p>
           </div>
-          <div class="stat-icon flex-shrink-0 bg-gradient-to-br from-rose-500 to-rose-600">
+          <div class="stat-icon flex-shrink-0 bg-rose-100 text-rose-600 dark:bg-rose-900/30 dark:text-rose-400">
             <PhRocket :size="20" />
           </div>
         </div>
