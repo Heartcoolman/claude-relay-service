@@ -681,7 +681,35 @@ import { ref, onMounted, onUnmounted, watch, nextTick, computed } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useDashboardStore } from '@/stores/dashboard'
 import { useThemeStore } from '@/stores/theme'
-import Chart from 'chart.js/auto'
+import {
+  Chart,
+  DoughnutController,
+  LineController,
+  ArcElement,
+  LineElement,
+  PointElement,
+  LinearScale,
+  CategoryScale,
+  Title,
+  Tooltip,
+  Legend,
+  Filler
+} from 'chart.js'
+
+// 注册需要的 Chart.js 组件
+Chart.register(
+  DoughnutController,
+  LineController,
+  ArcElement,
+  LineElement,
+  PointElement,
+  LinearScale,
+  CategoryScale,
+  Title,
+  Tooltip,
+  Legend,
+  Filler
+)
 
 const dashboardStore = useDashboardStore()
 const themeStore = useThemeStore()
@@ -788,10 +816,6 @@ function calculatePercentage(value, stats) {
 function createModelUsageChart() {
   if (!modelUsageChart.value) return
 
-  if (modelUsageChartInstance) {
-    modelUsageChartInstance.destroy()
-  }
-
   const data = dashboardModelStats.value || []
   const chartData = {
     labels: data.map((d) => d.model),
@@ -815,12 +839,21 @@ function createModelUsageChart() {
     ]
   }
 
+  // 如果图表已存在，更新数据而不是重建
+  if (modelUsageChartInstance) {
+    modelUsageChartInstance.data = chartData
+    modelUsageChartInstance.options.plugins.legend.labels.color = chartColors.value.legend
+    modelUsageChartInstance.update('none')
+    return
+  }
+
   modelUsageChartInstance = new Chart(modelUsageChart.value, {
     type: 'doughnut',
     data: chartData,
     options: {
       responsive: true,
       maintainAspectRatio: false,
+      animation: false,
       plugins: {
         legend: {
           position: 'bottom',
@@ -851,10 +884,6 @@ function createModelUsageChart() {
 // 创建使用趋势图
 function createUsageTrendChart() {
   if (!usageTrendChart.value) return
-
-  if (usageTrendChartInstance) {
-    usageTrendChartInstance.destroy()
-  }
 
   const data = trendData.value || []
 
@@ -943,12 +972,30 @@ function createUsageTrendChart() {
     ]
   }
 
+  // 如果图表已存在，更新数据而不是重建
+  if (usageTrendChartInstance) {
+    usageTrendChartInstance.data = chartData
+    usageTrendChartInstance.options.plugins.title.color = chartColors.value.text
+    usageTrendChartInstance.options.plugins.legend.labels.color = chartColors.value.legend
+    usageTrendChartInstance.options.scales.x.title.color = chartColors.value.text
+    usageTrendChartInstance.options.scales.x.ticks.color = chartColors.value.text
+    usageTrendChartInstance.options.scales.x.grid.color = chartColors.value.grid
+    usageTrendChartInstance.options.scales.y.title.color = chartColors.value.text
+    usageTrendChartInstance.options.scales.y.ticks.color = chartColors.value.text
+    usageTrendChartInstance.options.scales.y.grid.color = chartColors.value.grid
+    usageTrendChartInstance.options.scales.y1.title.color = chartColors.value.text
+    usageTrendChartInstance.options.scales.y1.ticks.color = chartColors.value.text
+    usageTrendChartInstance.update('none')
+    return
+  }
+
   usageTrendChartInstance = new Chart(usageTrendChart.value, {
     type: 'line',
     data: chartData,
     options: {
       responsive: true,
       maintainAspectRatio: false,
+      animation: false,
       interaction: {
         mode: 'index',
         intersect: false
@@ -1087,10 +1134,6 @@ function createUsageTrendChart() {
 function createApiKeysUsageTrendChart() {
   if (!apiKeysUsageTrendChart.value) return
 
-  if (apiKeysUsageTrendChartInstance) {
-    apiKeysUsageTrendChartInstance.destroy()
-  }
-
   const data = apiKeysTrendData.value.data || []
   const metric = apiKeysTrendMetric.value
 
@@ -1165,12 +1208,27 @@ function createApiKeysUsageTrendChart() {
     datasets: datasets
   }
 
+  // 如果图表已存在，更新数据而不是重建
+  if (apiKeysUsageTrendChartInstance) {
+    apiKeysUsageTrendChartInstance.data = chartData
+    apiKeysUsageTrendChartInstance.options.plugins.legend.labels.color = chartColors.value.legend
+    apiKeysUsageTrendChartInstance.options.scales.x.title.color = chartColors.value.text
+    apiKeysUsageTrendChartInstance.options.scales.x.ticks.color = chartColors.value.text
+    apiKeysUsageTrendChartInstance.options.scales.x.grid.color = chartColors.value.grid
+    apiKeysUsageTrendChartInstance.options.scales.y.title.color = chartColors.value.text
+    apiKeysUsageTrendChartInstance.options.scales.y.ticks.color = chartColors.value.text
+    apiKeysUsageTrendChartInstance.options.scales.y.grid.color = chartColors.value.grid
+    apiKeysUsageTrendChartInstance.update('none')
+    return
+  }
+
   apiKeysUsageTrendChartInstance = new Chart(apiKeysUsageTrendChart.value, {
     type: 'line',
     data: chartData,
     options: {
       responsive: true,
       maintainAspectRatio: false,
+      animation: false,
       plugins: {
         legend: {
           position: 'bottom',
@@ -1287,10 +1345,6 @@ async function updateApiKeysUsageTrendChart() {
 function createAccountUsageTrendChart() {
   if (!accountUsageTrendChart.value) return
 
-  if (accountUsageTrendChartInstance) {
-    accountUsageTrendChartInstance.destroy()
-  }
-
   const trend = accountUsageTrendData.value?.data || []
   const topAccounts = accountUsageTrendData.value?.topAccounts || []
 
@@ -1357,12 +1411,27 @@ function createAccountUsageTrendChart() {
 
   const topAccountIds = topAccounts
 
+  // 如果图表已存在，更新数据而不是重建
+  if (accountUsageTrendChartInstance) {
+    accountUsageTrendChartInstance.data = chartData
+    accountUsageTrendChartInstance.options.plugins.legend.labels.color = chartColors.value.legend
+    accountUsageTrendChartInstance.options.scales.x.title.color = chartColors.value.text
+    accountUsageTrendChartInstance.options.scales.x.ticks.color = chartColors.value.text
+    accountUsageTrendChartInstance.options.scales.x.grid.color = chartColors.value.grid
+    accountUsageTrendChartInstance.options.scales.y.title.color = chartColors.value.text
+    accountUsageTrendChartInstance.options.scales.y.ticks.color = chartColors.value.text
+    accountUsageTrendChartInstance.options.scales.y.grid.color = chartColors.value.grid
+    accountUsageTrendChartInstance.update('none')
+    return
+  }
+
   accountUsageTrendChartInstance = new Chart(accountUsageTrendChart.value, {
     type: 'line',
     data: chartData,
     options: {
       responsive: true,
       maintainAspectRatio: false,
+      animation: false,
       interaction: {
         mode: 'index',
         intersect: false

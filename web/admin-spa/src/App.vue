@@ -1,11 +1,13 @@
 <template>
-  <div id="app">
-    <router-view />
+  <el-config-provider :locale="zhCn">
+    <div id="app">
+      <router-view />
 
-    <!-- 全局组件 -->
-    <ToastNotification ref="toastRef" />
-    <ConfirmDialog ref="confirmRef" />
-  </div>
+      <!-- 全局组件 -->
+      <ToastNotification ref="toastRef" />
+      <ConfirmDialog ref="confirmRef" />
+    </div>
+  </el-config-provider>
 </template>
 
 <script setup>
@@ -14,6 +16,7 @@ import { useAuthStore } from '@/stores/auth'
 import { useThemeStore } from '@/stores/theme'
 import ToastNotification from '@/components/common/ToastNotification.vue'
 import ConfirmDialog from '@/components/common/ConfirmDialog.vue'
+import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
 
 const authStore = useAuthStore()
 const themeStore = useThemeStore()
