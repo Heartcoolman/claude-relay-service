@@ -258,9 +258,7 @@ jobs:
         # 限制 changelog 长度，避免参数过长
         CHANGELOG_LIMITED=$(echo "$CHANGELOG" | head -c 3000)
         if [ ${#CHANGELOG} -gt 3000 ]; then
-          CHANGELOG_LIMITED="${CHANGELOG_LIMITED}
-
-...更多更新请查看完整更新日志"
+          CHANGELOG_LIMITED="${CHANGELOG_LIMITED}... 更多更新请查看完整更新日志"
         fi
 
         # 使用文件存储 changelog，避免命令行参数过长
