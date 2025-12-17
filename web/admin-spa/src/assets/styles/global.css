@@ -86,9 +86,6 @@ body {
   margin: 0;
   overflow-x: hidden;
   color: var(--text-primary);
-  transition:
-    background 0.3s ease,
-    color 0.3s ease;
 }
 
 body::before {
@@ -107,17 +104,11 @@ body::before {
 }
 
 .glass {
-  background: var(--glass-color);
-  /* 降低模糊强度 */
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.85);
   border: 1px solid var(--border-color);
   box-shadow:
     0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  transition:
-    background-color 0.3s ease,
-    border-color 0.3s ease;
 }
 
 .dark .glass {
@@ -128,16 +119,11 @@ body::before {
 }
 
 .glass-strong {
-  background: var(--glass-strong-color);
-  /* 降低模糊强度 */
-  /* 移除模糊效果 */
+  background: rgba(255, 255, 255, 0.95);
   border: 1px solid var(--border-color);
   box-shadow:
     0 10px 15px -3px rgba(0, 0, 0, 0.1),
     0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  transition:
-    background-color 0.3s ease,
-    border-color 0.3s ease;
 }
 
 .dark .glass-strong {
@@ -185,30 +171,9 @@ body::before {
   border-radius: 12px;
   border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
   letter-spacing: 0.025em;
-}
-
-.btn::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  transition:
-    width 0.3s ease,
-    height 0.3s ease;
-}
-
-.btn:active::before {
-  width: 300px;
-  height: 300px;
 }
 
 .btn-primary {
@@ -220,10 +185,7 @@ body::before {
 }
 
 .btn-primary:hover {
-  transform: translateY(-1px);
-  box-shadow:
-    0 20px 25px -5px rgba(102, 126, 234, 0.3),
-    0 10px 10px -5px rgba(102, 126, 234, 0.1);
+  opacity: 0.9;
 }
 
 .btn-success {
@@ -235,10 +197,7 @@ body::before {
 }
 
 .btn-success:hover {
-  transform: translateY(-1px);
-  box-shadow:
-    0 20px 25px -5px rgba(16, 185, 129, 0.3),
-    0 10px 10px -5px rgba(16, 185, 129, 0.1);
+  opacity: 0.9;
 }
 
 .btn-danger {
@@ -250,10 +209,7 @@ body::before {
 }
 
 .btn-danger:hover {
-  transform: translateY(-1px);
-  box-shadow:
-    0 20px 25px -5px rgba(239, 68, 68, 0.3),
-    0 10px 10px -5px rgba(239, 68, 68, 0.1);
+  opacity: 0.9;
 }
 
 /* 表单输入框样式 */
@@ -264,11 +220,6 @@ body::before {
   padding: 16px;
   font-size: 16px;
   color: var(--text-primary);
-  transition:
-    background-color 0.3s ease,
-    border-color 0.3s ease,
-    box-shadow 0.3s ease;
-  /* 移除模糊效果 */
 }
 
 .form-input:focus {
@@ -298,9 +249,6 @@ body::before {
     0 4px 6px -2px rgba(0, 0, 0, 0.05);
   overflow: hidden;
   position: relative;
-  transition:
-    background-color 0.3s ease,
-    border-color 0.3s ease;
 }
 
 .dark .card {
@@ -326,36 +274,6 @@ body::before {
   padding: 24px;
   position: relative;
   overflow: hidden;
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
-}
-
-.dark .stat-card {
-  background: linear-gradient(135deg, rgba(31, 41, 55, 0.95) 0%, rgba(17, 24, 39, 0.8) 100%);
-}
-
-.stat-card::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.stat-card:hover {
-  transform: translateY(-4px);
-  box-shadow:
-    0 20px 25px -5px rgba(0, 0, 0, 0.1),
-    0 10px 10px -5px rgba(0, 0, 0, 0.04);
-}
-
-.stat-card:hover::before {
-  opacity: 1;
 }
 
 .stat-icon {
@@ -377,30 +295,9 @@ body::before {
   border-radius: 12px;
   border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
   letter-spacing: 0.025em;
-}
-
-.btn::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  transition:
-    width 0.3s ease,
-    height 0.3s ease;
-}
-
-.btn:active::before {
-  width: 300px;
-  height: 300px;
 }
 
 .btn-primary {
@@ -412,10 +309,7 @@ body::before {
 }
 
 .btn-primary:hover {
-  transform: translateY(-1px);
-  box-shadow:
-    0 20px 25px -5px rgba(102, 126, 234, 0.3),
-    0 10px 10px -5px rgba(102, 126, 234, 0.1);
+  opacity: 0.9;
 }
 
 .btn-success {
@@ -427,10 +321,7 @@ body::before {
 }
 
 .btn-success:hover {
-  transform: translateY(-1px);
-  box-shadow:
-    0 20px 25px -5px rgba(16, 185, 129, 0.3),
-    0 10px 10px -5px rgba(16, 185, 129, 0.1);
+  opacity: 0.9;
 }
 
 .btn-danger {
@@ -442,10 +333,7 @@ body::before {
 }
 
 .btn-danger:hover {
-  transform: translateY(-1px);
-  box-shadow:
-    0 20px 25px -5px rgba(239, 68, 68, 0.3),
-    0 10px 10px -5px rgba(239, 68, 68, 0.1);
+  opacity: 0.9;
 }
 
 .form-input {
@@ -455,11 +343,6 @@ body::before {
   padding: 16px;
   font-size: 16px;
   color: var(--text-primary);
-  transition:
-    background-color 0.3s ease,
-    border-color 0.3s ease,
-    box-shadow 0.3s ease;
-  /* 移除模糊效果 */
 }
 
 .form-input:focus {
@@ -487,7 +370,6 @@ body::before {
   box-shadow:
     0 10px 15px -3px rgba(0, 0, 0, 0.1),
     0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  transition: background-color 0.3s ease;
 }
 
 .dark .table-container {
@@ -496,21 +378,12 @@ body::before {
     0 4px 6px -2px rgba(0, 0, 0, 0.1);
 }
 
-.table-row {
-  transition:
-    background-color 0.2s ease,
-    transform 0.2s ease;
-}
-
 .table-row:hover {
   background: var(--table-hover);
-  transform: scale(1.005);
 }
 
 .modal {
-  /* 移除模糊效果 */
   background: var(--modal-bg);
-  transition: background-color 0.3s ease;
 }
 
 .modal-content {
@@ -520,10 +393,6 @@ body::before {
   box-shadow:
     0 10px 25px -5px rgba(0, 0, 0, 0.15),
     0 0 0 1px rgba(255, 255, 255, 0.05);
-  /* 移除模糊效果 */
-  transition:
-    background-color 0.3s ease,
-    border-color 0.3s ease;
 }
 
 .dark .modal-content {
@@ -743,16 +612,5 @@ body::before {
 
 /* Tab 内容区域样式 */
 .tab-content {
-  animation: fadeIn 0.3s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  /* 移除动画 */
 }

@@ -1,24 +1,26 @@
-/* Glass效果 - 优化版 */
+/* Glass效果 - 性能优化版（移除 backdrop-filter 以提升性能） */
 .glass {
-  background: var(--glass-color);
-  /* 降低模糊强度 */
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.85);
   border: 1px solid var(--border-color);
   box-shadow:
     0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
+.dark .glass {
+  background: rgba(31, 41, 55, 0.9);
+}
+
 .glass-strong {
-  background: var(--surface-color);
-  /* 降低模糊强度 */
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.95);
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow:
     0 10px 15px -3px rgba(0, 0, 0, 0.1),
     0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.dark .glass-strong {
+  background: rgba(31, 41, 55, 0.95);
 }
 
 /* 标签按钮 */
@@ -76,7 +78,7 @@
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
 }
 
-/* 统计卡片 */
+/* 统计卡片 - 移除hover动画以提升性能 */
 .stat-card {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.8) 100%);
   border-radius: 20px;
@@ -84,30 +86,6 @@
   padding: 24px;
   position: relative;
   overflow: hidden;
-  transition: all 0.3s ease;
-}
-
-.stat-card::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.stat-card:hover {
-  transform: translateY(-4px);
-  box-shadow:
-    0 20px 25px -5px rgba(0, 0, 0, 0.1),
-    0 10px 10px -5px rgba(0, 0, 0, 0.04);
-}
-
-.stat-card:hover::before {
-  opacity: 1;
 }
 
 .stat-icon {
@@ -124,36 +102,15 @@
     0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
-/* 按钮 */
+/* 按钮 - 简化动画 */
 .btn {
   font-weight: 500;
   border-radius: 12px;
   border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
   letter-spacing: 0.025em;
-}
-
-.btn::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  transition:
-    width 0.3s ease,
-    height 0.3s ease;
-}
-
-.btn:active::before {
-  width: 300px;
-  height: 300px;
 }
 
 .btn-primary {
@@ -165,10 +122,7 @@
 }
 
 .btn-primary:hover {
-  transform: translateY(-1px);
-  box-shadow:
-    0 20px 25px -5px rgba(102, 126, 234, 0.3),
-    0 10px 10px -5px rgba(102, 126, 234, 0.1);
+  opacity: 0.9;
 }
 
 .btn-success {
@@ -180,10 +134,7 @@
 }
 
 .btn-success:hover {
-  transform: translateY(-1px);
-  box-shadow:
-    0 20px 25px -5px rgba(16, 185, 129, 0.3),
-    0 10px 10px -5px rgba(16, 185, 129, 0.1);
+  opacity: 0.9;
 }
 
 .btn-danger {
@@ -195,10 +146,7 @@
 }
 
 .btn-danger:hover {
-  transform: translateY(-1px);
-  box-shadow:
-    0 20px 25px -5px rgba(239, 68, 68, 0.3),
-    0 10px 10px -5px rgba(239, 68, 68, 0.1);
+  opacity: 0.9;
 }
 
 .btn-secondary {
@@ -210,10 +158,7 @@
 }
 
 .btn-secondary:hover {
-  transform: translateY(-1px);
-  box-shadow:
-    0 20px 25px -5px rgba(107, 114, 128, 0.3),
-    0 10px 10px -5px rgba(107, 114, 128, 0.1);
+  opacity: 0.9;
 }
 
 /* 表单输入 */
@@ -223,8 +168,6 @@
   border-radius: 12px;
   padding: 8px 12px;
   font-size: 14px;
-  transition: all 0.2s ease;
-  /* 移除模糊效果，使用纯色背景 */
 }
 
 .form-input:focus {
@@ -246,13 +189,8 @@
     0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
-.table-row {
-  transition: all 0.2s ease;
-}
-
 .table-row:hover {
   background: rgba(102, 126, 234, 0.05);
-  transform: scale(1.005);
 }
 
 /* 模态框 */
@@ -468,24 +406,9 @@
   border: 1px solid rgba(245, 158, 11, 0.3);
 }
 
-/* 版本更新提醒动画 */
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.1);
-    opacity: 0.8;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
+/* 版本更新提醒 - 移除无限动画 */
 .animate-pulse {
-  animation: pulse 2s infinite;
+  /* 无动画，保持静态 */
 }
 
 /* 用户菜单下拉框优化 */
