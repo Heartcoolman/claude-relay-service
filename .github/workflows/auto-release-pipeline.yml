@@ -249,14 +249,23 @@ jobs:
         # 获取上一个tag以来的更新日志
         LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
         if [ -n "$LATEST_TAG" ]; then
-          # 排除VERSION文件的提交
-          CHANGELOG=$(git-cliff --config .github/cliff.toml $LATEST_TAG..HEAD --strip header | grep -v "bump version" | sed '/^$/d' || echo "- 代码优化和改进")
+          # 排除VERSION文件的提交，只获取最近20条
+          CHANGELOG=$(git-cliff --config .github/cliff.toml $LATEST_TAG..HEAD --strip header | grep -v "bump version" | sed '/^$/d' | head -50 || echo "- 代码优化和改进")
         else
-          CHANGELOG=$(git-cliff --config .github/cliff.toml --strip header || echo "- 初始版本发布")
+          CHANGELOG=$(git-cliff --config .github/cliff.toml --strip header | head -50 || echo "- 初始版本发布")
         fi
-        echo "content<<EOF" >> $GITHUB_OUTPUT
-        echo "$CHANGELOG" >> $GITHUB_OUTPUT
-        echo "EOF" >> $GITHUB_OUTPUT
+
+        # 限制 changelog 长度，避免参数过长
+        CHANGELOG_LIMITED=$(echo "$CHANGELOG" | head -c 3000)
+        if [ ${#CHANGELOG} -gt 3000 ]; then
+          CHANGELOG_LIMITED="${CHANGELOG_LIMITED}
+
+...更多更新请查看完整更新日志"
+        fi
+
+        # 使用文件存储 changelog，避免命令行参数过长
+        echo "$CHANGELOG_LIMITED" > /tmp/changelog.txt
+        echo "content_file=/tmp/changelog.txt" >> $GITHUB_OUTPUT
 
     - name: Create and push tag
       if: steps.check.outputs.needs_bump == 'true'
@@ -282,32 +291,47 @@ jobs:
           echo "ghcr_image=${GHCR_IMAGE}"
         } >> "$GITHUB_OUTPUT"
 
+    - name: Prepare release body
+      if: steps.check.outputs.needs_bump == 'true'
+      run: |
+        cat > /tmp/release_body.md << 'RELEASE_HEADER'
+        ## 🐳 Docker 镜像
+
+        ```bash
+        RELEASE_HEADER
+
+        echo "docker pull ${{ steps.image_names.outputs.docker_image }}:${{ steps.next_version.outputs.new_tag }}" >> /tmp/release_body.md
+        echo "docker pull ${{ steps.image_names.outputs.docker_image }}:latest" >> /tmp/release_body.md
+        echo "docker pull ${{ steps.image_names.outputs.ghcr_image }}:${{ steps.next_version.outputs.new_tag }}" >> /tmp/release_body.md
+        echo "docker pull ${{ steps.image_names.outputs.ghcr_image }}:latest" >> /tmp/release_body.md
+
+        cat >> /tmp/release_body.md << 'RELEASE_MIDDLE'
+        ```
+
+        ## 📦 主要更新
+
+        RELEASE_MIDDLE
+
+        cat /tmp/changelog.txt >> /tmp/release_body.md
+
+        cat >> /tmp/release_body.md << 'RELEASE_FOOTER'
+
+        ## 📋 完整更新日志
+
+        RELEASE_FOOTER
+
+        echo "查看 [所有版本](https://github.com/${{ github.repository }}/releases)" >> /tmp/release_body.md
+
     - name: Create GitHub Release
       if: steps.check.outputs.needs_bump == 'true'
       uses: softprops/action-gh-release@v1
       with:
         tag_name: ${{ steps.next_version.outputs.new_tag }}
         name: Release ${{ steps.next_version.outputs.new_version }}
-        body: |
-          ## 🐳 Docker 镜像
-          
-          ```bash
-          docker pull ${{ steps.image_names.outputs.docker_image }}:${{ steps.next_version.outputs.new_tag }}
-          docker pull ${{ steps.image_names.outputs.docker_image }}:latest
-          docker pull ${{ steps.image_names.outputs.ghcr_image }}:${{ steps.next_version.outputs.new_tag }}
-          docker pull ${{ steps.image_names.outputs.ghcr_image }}:latest
-          ```
-          
-          ## 📦 主要更新
-          
-          ${{ steps.changelog.outputs.content }}
-          
-          ## 📋 完整更新日志
-          
-          查看 [所有版本](https://github.com/${{ github.repository }}/releases)
+        body_path: /tmp/release_body.md
         draft: false
         prerelease: false
-        generate_release_notes: true
+        generate_release_notes: false
 
     # 自动清理旧的tags和releases（保持最近50个）
     - name: Cleanup old tags and releases
@@ -467,14 +491,14 @@ jobs:
         VERSION="${{ steps.next_version.outputs.new_version }}"
         TAG="${{ steps.next_version.outputs.new_tag }}"
         REPO="${{ github.repository }}"
-        
-        # 获取更新内容并限制长度
-        CHANGELOG="${{ steps.changelog.outputs.content }}"
+
+        # 从文件读取 changelog 并限制长度
+        CHANGELOG=$(cat /tmp/changelog.txt 2>/dev/null || echo "- 代码优化和改进")
         CHANGELOG_TRUNCATED=$(echo "$CHANGELOG" | head -c 1000)
         if [ ${#CHANGELOG} -gt 1000 ]; then
           CHANGELOG_TRUNCATED="${CHANGELOG_TRUNCATED}..."
         fi
-        
+
         # 构建消息内容
         MESSAGE="🚀 *Claude Relay Service 新版本发布！*"$'\n'$'\n'
         MESSAGE+="📦 版本号: \`${VERSION}\`"$'\n'$'\n'
@@ -493,7 +517,7 @@ jobs:
         MESSAGE+="• [Docker Hub](https://hub.docker.com/r/${DOCKER_IMAGE%/*}/claude-relay-service)"$'\n'
         MESSAGE+="• [GHCR](https://ghcr.io/${GHCR_IMAGE#ghcr.io/})"$'\n'$'\n'
         MESSAGE+="#ClaudeRelay #Update #v${VERSION//./_}"
-        
+
         # 使用 jq 构建 JSON 并发送
         jq -n \
           --arg chat_id "${TELEGRAM_CHAT_ID}" \
